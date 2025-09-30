@@ -17,4 +17,9 @@ class OrderAddon extends Model
     {
         return $this->belongsTo(Addon::class);
     }
+
+    public function scopeForOrder($query, $orderId)
+    {
+        return $query->where('order_id', $orderId);
+    }
 }

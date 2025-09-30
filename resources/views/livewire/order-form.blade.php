@@ -21,21 +21,20 @@
             <!-- STEP 1: Basic Details -->
             <div x-show="step === 1" x-transition>
                 <div class="space-y-6">
-
                     <!-- Email -->
                     <div>
                         <label class="block font-semibold mb-2">Your Email</label>
-                        <input type="text" wire:model="email"
+                        <input type="text" wire:model.live="email"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                         @error('email')
                             <p class="text-red-500 text-sm">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    <!-- Assignment Type + Subcategories -->
+                    <!-- Assignment Type -->
                     <div>
                         <label class="block font-semibold mb-2">Assignment Type</label>
-                        <select wire:model="assignment_type_id"
+                        <select wire:model.live="assignment_type_id"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- Select Assignment Type --</option>
                             @foreach ($assignmentTypes->whereNull('parent_id') as $parent)
@@ -55,7 +54,7 @@
                     <!-- Service -->
                     <div>
                         <label class="block font-semibold mb-2">Service</label>
-                        <select wire:model="service_id"
+                        <select wire:model.live="service_id"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- Select Service --</option>
                             @foreach ($services as $service)
@@ -70,7 +69,7 @@
                     <!-- Academic Level -->
                     <div>
                         <label class="block font-semibold mb-2">Academic Level</label>
-                        <select wire:model="academic_level_id"
+                        <select wire:model.live="academic_level_id"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- Select Level --</option>
                             @foreach ($levels as $level)
@@ -85,7 +84,7 @@
                     <!-- Subject -->
                     <div>
                         <label class="block font-semibold mb-2">Subject</label>
-                        <select wire:model="subject_id"
+                        <select wire:model.live="subject_id"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- Select Subject --</option>
                             @foreach ($subjects as $subj)
@@ -100,7 +99,7 @@
                     <!-- Language -->
                     <div>
                         <label class="block font-semibold mb-2">Language</label>
-                        <select wire:model="language_id"
+                        <select wire:model.live="language_id"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             @foreach ($languages as $lang)
                                 <option value="{{ $lang->id }}">{{ $lang->name }}</option>
@@ -114,7 +113,7 @@
                     <!-- Style -->
                     <div>
                         <label class="block font-semibold mb-2">Citation Style</label>
-                        <select wire:model="style_id"
+                        <select wire:model.live="style_id"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- None --</option>
                             @foreach ($styles as $style)
@@ -129,7 +128,7 @@
                     <!-- Topic -->
                     <div>
                         <label class="block font-semibold mb-2">Topic / Title</label>
-                        <input type="text" wire:model="subject"
+                        <input type="text" wire:model.live="subject"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                         @error('subject')
                             <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -139,7 +138,7 @@
                     <!-- Word Count -->
                     <div>
                         <label class="block font-semibold mb-2">Word Count</label>
-                        <input type="text" wire:model="words"
+                        <input type="text" wire:model.live="words"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                         <p class="text-sm text-gray-500">1 page ≈ 275 words</p>
                         @error('words')
@@ -162,7 +161,7 @@
                     <!-- Deadline -->
                     <div>
                         <label class="block font-semibold mb-2">Deadline</label>
-                        <select wire:model="deadline_option"
+                        <select wire:model.live="deadline_option"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="7d">7 days</option>
                             <option value="5d">5 days</option>
@@ -182,7 +181,7 @@
                         <div class="space-y-2">
                             @foreach ($addons as $addon)
                                 <label class="flex items-center space-x-2">
-                                    <input type="checkbox" wire:model="selectedAddons" value="{{ $addon->id }}"
+                                    <input type="checkbox" wire:model.live="selectedAddons" value="{{ $addon->id }}"
                                         class="rounded border-gray-300 text-primary focus:ring-primary">
                                     <span>{{ $addon->name }} (+£{{ $addon->price }})</span>
                                 </label>
@@ -191,7 +190,11 @@
                     </div>
 
                     <!-- Price -->
-                    <div class="bg-gray-100 p-4 rounded-lg text-center text-lg font-bold text-primary">
+                    <div class="bg-gray-100 p-4 rounded-lg text-center text-lg font-bold text-primary relative">
+                        <div wire:loading wire:target="words,deadline_option,selectedAddons"
+                            class="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-80">
+                            <span class="animate-pulse text-gray-600">Calculating...</span>
+                        </div>
                         Estimated Price: £{{ $finalPrice }}
                     </div>
                 </div>
@@ -212,7 +215,7 @@
                     <!-- Instructions -->
                     <div>
                         <label class="block font-semibold mb-2">Additional Instructions</label>
-                        <textarea wire:model="instructions" rows="4"
+                        <textarea wire:model.live="instructions" rows="4"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary"></textarea>
                     </div>
 
@@ -253,7 +256,11 @@
                                 @endif
                             </li>
                         </ul>
-                        <div class="text-lg font-bold text-primary mt-4">
+                        <div class="text-lg font-bold text-primary mt-4 relative">
+                            <div wire:loading wire:target="words,deadline_option,selectedAddons"
+                                class="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-80">
+                                <span class="animate-pulse text-gray-600">Calculating...</span>
+                            </div>
                             Final Price: £{{ $finalPrice }}
                         </div>
                     </div>

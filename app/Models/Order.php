@@ -87,8 +87,17 @@ class Order extends Model
         return $this->hasMany(ChatMessage::class);
     }
 
-    public function statusHistory()
+    public function statusHistories()
     {
         return $this->hasMany(OrderStatusHistory::class);
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($order) {
+            $order->addons()->delete();
+            $order->files()->delete();
+            $order->statusHistories()->delete();
+        });
     }
 }

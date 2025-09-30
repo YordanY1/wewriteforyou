@@ -37,6 +37,17 @@
     </footer>
 
     @livewireScripts
+
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('redirect-to-stripe', (event) => {
+                if (event.url) {
+                    window.location.href = event.url;
+                }
+            });
+        });
+    </script>
+
     @vite('resources/js/app.js')
 </body>
 

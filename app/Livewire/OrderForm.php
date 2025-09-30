@@ -28,6 +28,21 @@ class OrderForm extends Component
     public $assignment_type_id, $sub_assignment_type_id, $service_id, $academic_level_id, $subject_id, $language_id = 1, $style_id;
 
 
+    public function updatedWords()
+    {
+        $this->calculatePrice();
+    }
+
+    public function updatedDeadlineOption()
+    {
+        $this->calculatePrice();
+    }
+
+    public function updatedSelectedAddons()
+    {
+        $this->calculatePrice();
+    }
+
 
     public function updated($propertyName)
     {
@@ -89,6 +104,7 @@ class OrderForm extends Component
             'final_price'        => $priceData['total'],
             'currency_id'        => 1, // GBP по default
             'reference_code'     => strtoupper(uniqid('ORD-')),
+            'status' => 'awaiting_payment',
         ]);
 
         // Add-ons
@@ -109,9 +125,9 @@ class OrderForm extends Component
                 'size'          => $file->getSize(),
             ]);
         }
-        session()->flash('success', '🎉 Your order has been created!');
-        $this->dispatch('order-created'); 
-        $this->reset();
+        $session = \App\Http\Controllers\PaymentController::createCheckoutSession($order);
+
+        $this->dispatch('redirect-to-stripe', url: $session->url);
     }
 
     public function render()
