@@ -13,12 +13,15 @@ class PaymentController extends Controller
         $sessionId = $request->get('session_id');
 
         Stripe::setApiKey(config('services.stripe.secret'));
-        $session = CheckoutSession::retrieve($sessionId);
 
         $reference = $session->metadata->reference_code ?? null;
 
+
+        $order = null;
+
         if ($reference) {
             $order = \App\Models\Order::where('reference_code', $reference)->first();
+
 
             if ($order) {
                 $oldStatus = $order->status ?? 'new';
@@ -32,11 +35,13 @@ class PaymentController extends Controller
             }
         }
 
-        return redirect()->route('payment.success', ['reference_code' => $reference]);
+        return view('payment.success', compact('order'));
     }
 
     public function cancel(Request $request)
     {
+        $order = null;
+
         if ($request->has('reference_code')) {
             $order = \App\Models\Order::where('reference_code', $request->get('reference_code'))->first();
             if ($order) {
@@ -44,9 +49,7 @@ class PaymentController extends Controller
             }
         }
 
-        return redirect()->route('payment.cancel', [
-            'reference_code' => $request->get('reference_code')
-        ]);
+        return view('payment.cancel', compact('order'));
     }
 
     public static function createCheckoutSession($order)

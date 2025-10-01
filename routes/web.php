@@ -8,6 +8,8 @@ use App\Livewire\ReviewsPage;
 use App\Livewire\AboutPage;
 use App\Livewire\ClientRightsPage;
 use App\Livewire\ContactPage;
+use App\Http\Controllers\PaymentController;
+
 
 
 Route::get('/', Home::class)->name('home');
@@ -18,5 +20,6 @@ Route::get('/about', AboutPage::class)->name('about');
 Route::get('/client-rights', ClientRightsPage::class)->name('rights');
 Route::get('/contact', ContactPage::class)->name('contact');
 
-Route::get('/payment/success', \App\Livewire\Payment\SuccessPage::class)->name('payment.success');
-Route::get('/payment/cancel', \App\Livewire\Payment\CancelPage::class)->name('payment.cancel');
+
+Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');

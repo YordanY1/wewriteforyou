@@ -32,6 +32,7 @@
                     </div>
 
                     <!-- Assignment Type -->
+                    <!-- Assignment Type -->
                     <div>
                         <label class="block font-semibold mb-2">Assignment Type</label>
                         <select wire:model.live="assignment_type_id"
@@ -39,7 +40,6 @@
                             <option value="">-- Select Assignment Type --</option>
                             @foreach ($assignmentTypes->whereNull('parent_id') as $parent)
                                 <optgroup label="{{ $parent->name }}">
-                                    <option value="{{ $parent->id }}">{{ $parent->name }}</option>
                                     @foreach ($assignmentTypes->where('parent_id', $parent->id) as $child)
                                         <option value="{{ $child->id }}">— {{ $child->name }}</option>
                                     @endforeach
@@ -128,9 +128,9 @@
                     <!-- Topic -->
                     <div>
                         <label class="block font-semibold mb-2">Topic / Title</label>
-                        <input type="text" wire:model.live="subject"
+                        <input type="text" wire:model.live="topic"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
-                        @error('subject')
+                        @error('topic')
                             <p class="text-red-500 text-sm">{{ $message }}</p>
                         @enderror
                     </div>
@@ -149,7 +149,7 @@
 
                 <div class="text-right mt-8">
                     <button type="button" @click="step = 2"
-                        class="bg-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white">
+                        class="bg-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white cursor-pointer">
                         Next →
                     </button>
                 </div>
@@ -203,7 +203,7 @@
                     <button type="button" @click="step = 1"
                         class="bg-gray-200 px-6 py-3 rounded-lg font-bold hover:bg-gray-300">← Back</button>
                     <button type="button" @click="step = 3"
-                        class="bg-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white">
+                        class="bg-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white cursor-pointer">
                         Next →
                     </button>
                 </div>
@@ -213,19 +213,95 @@
             <div x-show="step === 3" x-transition>
                 <div class="space-y-6">
                     <!-- Instructions -->
-                    <div>
-                        <label class="block font-semibold mb-2">Additional Instructions</label>
-                        <textarea wire:model.live="instructions" rows="4"
-                            class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary"></textarea>
+                    <div wire:ignore x-data x-init="() => {
+                        const quill = new Quill($refs.quillEditor, {
+                            theme: 'snow',
+                            placeholder: 'Type your instructions here...',
+                            modules: {
+                                toolbar: [
+                                    [{ header: [1, 2, false] }],
+                                    ['bold', 'italic', 'underline'],
+                                    ['link', 'blockquote', 'code-block', 'image'],
+                                    [{ list: 'ordered' }, { list: 'bullet' }],
+                                ],
+                            }
+                        });
+
+                        quill.on('text-change', function() {
+                            $refs.instructions.value = quill.root.innerHTML;
+                            Livewire.dispatch('input', {
+                                name: 'instructions',
+                                value: quill.root.innerHTML
+                            });
+                        });
+                    }">
+                        <!-- Quill container -->
+                        <div x-ref="quillEditor" class="h-40 border rounded-lg"></div>
+
+                        <!-- hidden input -->
+                        <input type="hidden" x-ref="instructions" wire:model="instructions">
                     </div>
 
                     <!-- Files -->
-                    <div>
+                    <div x-data="{ isDropping: false }" x-on:dragover.prevent="isDropping = true"
+                        x-on:dragleave.prevent="isDropping = false"
+                        x-on:drop.prevent="
+        isDropping = false;
+        $refs.fileInput.files = $event.dataTransfer.files;
+        $refs.fileInput.dispatchEvent(new Event('input', { bubbles: true }));
+    "
+                        class="w-full">
                         <label class="block font-semibold mb-2">Upload Files</label>
-                        <input type="file" wire:model="files" multiple
-                            class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
-                        <p class="text-sm text-gray-500">Max 150MB</p>
+
+                        <!-- Dropzone -->
+                        <div class="flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg cursor-pointer transition
+               bg-gray-50 hover:bg-gray-100"
+                            :class="isDropping ? 'border-primary bg-primary/10' : 'border-gray-300'"
+                            @click="$refs.fileInput.click()">
+                            <svg class="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M7 16a4 4 0 01-.88-7.903A5.977 5.977 0 0112 4c2.485 0 4.644 1.518 5.475 3.688A4.002 4.002 0 0118 16H7z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M7 16v6m0-6l-2 2m2-2l2 2m10-2v6m0-6l-2 2m2-2l2 2" />
+                            </svg>
+                            <p class="text-gray-600 font-medium">Drag & drop files here</p>
+                            <p class="text-sm text-gray-500">or click to select (max 150MB)</p>
+                        </div>
+
+                        <!-- Hidden input -->
+                        <input type="file" wire:model="files" multiple x-ref="fileInput" class="hidden">
+
+                        <!-- Error -->
+                        @error('files.*')
+                            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                        @enderror
+
+                        <!-- Preview -->
+                        <div class="mt-4 space-y-2" wire:loading.remove wire:target="files">
+                            @if ($files)
+                                @foreach ($files as $file)
+                                    <div class="flex items-center p-2 bg-gray-100 rounded-lg text-sm text-gray-700">
+                                        <svg class="w-5 h-5 text-gray-500 mr-2" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002
+                                 2h12a2 2 0 002-2V7.414A2 2 0
+                                 0017.414 6L13 1.586A2 2 0
+                                 0011.586 1H4zm8 7a1 1 0
+                                 11-2 0 1 1 0 012 0z" />
+                                        </svg>
+                                        <span>{{ $file->getClientOriginalName() }}</span>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <!-- Loading indicator -->
+                        <div wire:loading wire:target="files" class="text-sm text-gray-500 mt-2">
+                            Uploading...
+                        </div>
                     </div>
+
 
                     <!-- Summary -->
                     <div class="bg-gray-100 p-6 rounded-lg shadow-inner">
@@ -240,7 +316,7 @@
                             <li><strong>Subject:</strong> {{ optional($subjects->find($subject_id))->name }}</li>
                             <li><strong>Language:</strong> {{ optional($languages->find($language_id))->name }}</li>
                             <li><strong>Style:</strong> {{ optional($styles->find($style_id))->name ?? 'None' }}</li>
-                            <li><strong>Topic:</strong> {{ $subject ?? '' }}</li>
+                            <li><strong>Topic:</strong> {{ $topic ?? '' }}</li>
                             <li><strong>Word Count:</strong> {{ $words ?? 0 }} words
                                 (~{{ ceil(($words ?? 0) / 275) }} pages)</li>
                             <li><strong>Deadline:</strong> {{ $deadline_option ?? '' }}</li>
@@ -270,7 +346,7 @@
                     <button type="button" @click="step = 2"
                         class="bg-gray-200 px-6 py-3 rounded-lg font-bold hover:bg-gray-300">← Back</button>
                     <button type="submit"
-                        class="bg-gold text-black px-8 py-4 rounded-lg font-bold shadow-lg hover:bg-secondary hover:text-white">
+                        class="bg-gold text-black px-8 py-4 rounded-lg font-bold shadow-lg hover:bg-secondary hover:text-white cursor-pointer">
                         Submit Order
                     </button>
                 </div>

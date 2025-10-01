@@ -24,7 +24,8 @@ class Order extends Model
         'base_price',
         'final_price',
         'currency_id',
-        'reference_code'
+        'reference_code',
+        'topic'
     ];
 
     public function user()

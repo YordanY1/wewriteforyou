@@ -26,6 +26,8 @@ class OrderForm extends Component
     public $finalPrice = 0;
 
     public $assignment_type_id, $sub_assignment_type_id, $service_id, $academic_level_id, $subject_id, $language_id = 1, $style_id;
+    public $topic;
+
 
 
     public function updatedWords()
@@ -75,7 +77,7 @@ class OrderForm extends Component
             'subject_id'        => 'required|exists:subjects,id',
             'language_id'       => 'required|exists:languages,id',
             'style_id'          => 'nullable|exists:styles,id',
-            'subject'           => 'required|string|max:255',
+            'topic'             => 'nullable|string|max:255',
             'words'             => 'required|integer|min:275',
             'deadline_option'   => 'required',
         ]);
@@ -90,11 +92,11 @@ class OrderForm extends Component
 
         $order = Order::create([
             'email'              => $this->email,
-            'subject'            => $this->subject,
             'assignment_type_id' => $this->assignment_type_id,
             'service_id'         => $this->service_id,
             'academic_level_id'  => $this->academic_level_id,
             'subject_id'         => $this->subject_id,
+            'topic'             => $this->topic,
             'language_id'        => $this->language_id,
             'style_id'           => $this->style_id,
             'words'              => $this->words,

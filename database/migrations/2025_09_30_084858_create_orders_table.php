@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('service_id')->nullable()->constrained('services')->nullOnDelete();
             $table->foreignId('academic_level_id')->nullable()->constrained('academic_levels')->nullOnDelete();
             $table->foreignId('subject_id')->nullable()->constrained('subjects')->nullOnDelete();
+            $table->string('topic')->nullable();
             $table->foreignId('language_id')
                 ->nullable()
                 ->constrained('languages')
