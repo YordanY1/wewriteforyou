@@ -14,14 +14,18 @@ class PaymentController extends Controller
 
         Stripe::setApiKey(config('services.stripe.secret'));
 
+        try {
+            $session = CheckoutSession::retrieve($sessionId);
+        } catch (\Exception $e) {
+            \Log::error("Stripe error: " . $e->getMessage());
+            return view('payment.error', ['message' => 'Stripe session error']);
+        }
+
         $reference = $session->metadata->reference_code ?? null;
-
-
         $order = null;
 
         if ($reference) {
             $order = \App\Models\Order::where('reference_code', $reference)->first();
-
 
             if ($order) {
                 $oldStatus = $order->status ?? 'new';
@@ -32,6 +36,20 @@ class PaymentController extends Controller
                     'new_status' => 'paid',
                     'changed_by' => null,
                 ]);
+
+                // try {
+                //     \Mail::to($order->email)
+                //         ->queue(new \App\Mail\OrderPaidMail($order));
+                // } catch (\Exception $e) {
+                //     \Log::error("Mail to customer failed: " . $e->getMessage());
+                // }
+
+                try {
+                    \Mail::to(config('mail.admin_recipients'))
+                        ->queue(new \App\Mail\AdminOrderPaidMail($order));
+                } catch (\Exception $e) {
+                    \Log::error("Mail to admin failed: " . $e->getMessage());
+                }
             }
         }
 
