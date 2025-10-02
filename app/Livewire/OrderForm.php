@@ -15,6 +15,8 @@ use App\Models\{
     Language,
     Style
 };
+use Illuminate\Support\Facades\Auth;
+
 
 class OrderForm extends Component
 {
@@ -70,7 +72,6 @@ class OrderForm extends Component
     public function submitOrder()
     {
         $this->validate([
-            'email'             => 'required|email',
             'assignment_type_id' => 'required|exists:assignment_types,id',
             'service_id'        => 'required|exists:services,id',
             'academic_level_id' => 'required|exists:academic_levels,id',
@@ -80,7 +81,7 @@ class OrderForm extends Component
             'topic'             => 'nullable|string|max:255',
             'words'             => 'required|integer|min:275',
             'deadline_option'   => 'required',
-        ]);
+        ] + (Auth::check() ? [] : ['email' => 'required|email'])); 
 
         $calculator = new PriceCalculator();
         $priceData = $calculator->calculate(
@@ -91,22 +92,23 @@ class OrderForm extends Component
         );
 
         $order = Order::create([
-            'email'              => $this->email,
+            'user_id'           => Auth::id(),
+            'email'             => Auth::check() ? Auth::user()->email : $this->email,
             'assignment_type_id' => $this->assignment_type_id,
-            'service_id'         => $this->service_id,
-            'academic_level_id'  => $this->academic_level_id,
-            'subject_id'         => $this->subject_id,
+            'service_id'        => $this->service_id,
+            'academic_level_id' => $this->academic_level_id,
+            'subject_id'        => $this->subject_id,
             'topic'             => $this->topic,
-            'language_id'        => $this->language_id,
-            'style_id'           => $this->style_id,
-            'words'              => $this->words,
-            'deadline_option'    => $this->deadline_option,
-            'instructions'       => $this->instructions,
-            'base_price'         => $priceData['base'],
-            'final_price'        => $priceData['total'],
-            'currency_id'        => 1, // GBP по default
-            'reference_code'     => strtoupper(uniqid('ORD-')),
-            'status' => 'awaiting_payment',
+            'language_id'       => $this->language_id,
+            'style_id'          => $this->style_id,
+            'words'             => $this->words,
+            'deadline_option'   => $this->deadline_option,
+            'instructions'      => $this->instructions,
+            'base_price'        => $priceData['base'],
+            'final_price'       => $priceData['total'],
+            'currency_id'       => 1,
+            'reference_code'    => strtoupper(uniqid('ORD-')),
+            'status'            => 'awaiting_payment',
         ]);
 
         // Add-ons
@@ -127,8 +129,8 @@ class OrderForm extends Component
                 'size'          => $file->getSize(),
             ]);
         }
-        $session = \App\Http\Controllers\PaymentController::createCheckoutSession($order);
 
+        $session = \App\Http\Controllers\PaymentController::createCheckoutSession($order);
         $this->dispatch('redirect-to-stripe', url: $session->url);
     }
 

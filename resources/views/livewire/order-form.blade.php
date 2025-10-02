@@ -22,16 +22,17 @@
             <div x-show="step === 1" x-transition>
                 <div class="space-y-6">
                     <!-- Email -->
-                    <div>
-                        <label class="block font-semibold mb-2">Your Email</label>
-                        <input type="text" wire:model.live="email"
-                            class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
-                        @error('email')
-                            <p class="text-red-500 text-sm">{{ $message }}</p>
-                        @enderror
-                    </div>
+                    @if (!Auth::check())
+                        <div>
+                            <label class="block font-semibold mb-2">Your Email</label>
+                            <input type="text" wire:model.live="email"
+                                class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
+                            @error('email')
+                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    @endif
 
-                    <!-- Assignment Type -->
                     <!-- Assignment Type -->
                     <div>
                         <label class="block font-semibold mb-2">Assignment Type</label>
@@ -342,7 +343,26 @@
                     </div>
                 </div>
 
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                    <h3 class="text-lg font-bold text-blue-800 mb-2">Why create an account? 🤔</h3>
+                    <ul class="space-y-1 text-blue-700 text-sm">
+                        <li>✔ Track all your orders in one place</li>
+                        <li>✔ Chat directly with your writer / support team</li>
+                        <li>✔ Get notified about updates & revisions</li>
+                        <li>✔ Access invoices & payment history anytime</li>
+                        <li>✔ Faster checkout for future orders</li>
+                    </ul>
+
+                    <div class="mt-4">
+                        <a href="{{ route('register') }}"
+                            class="inline-block bg-primary text-white px-4 py-2 rounded-lg shadow hover:bg-primary/80 transition">
+                            👉 Create your free account
+                        </a>
+                    </div>
+                </div>
+
                 <div class="flex justify-between mt-8">
+
                     <button type="button" @click="step = 2"
                         class="bg-gray-200 px-6 py-3 rounded-lg font-bold hover:bg-gray-300">← Back</button>
                     <button type="submit"

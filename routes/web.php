@@ -9,7 +9,13 @@ use App\Livewire\AboutPage;
 use App\Livewire\ClientRightsPage;
 use App\Livewire\ContactPage;
 use App\Http\Controllers\PaymentController;
-
+use App\Livewire\Auth\RegisterForm;
+use App\Livewire\Auth\LoginForm;
+use App\Livewire\Auth\ForgotPassword;
+use App\Livewire\Auth\ResetPassword;
+use App\Livewire\Dashboard;
+use App\Livewire\Orders\MyOrders;
+use App\Livewire\Orders\ShowOrder;
 
 
 Route::get('/', Home::class)->name('home');
@@ -23,3 +29,17 @@ Route::get('/contact', ContactPage::class)->name('contact');
 
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('/register', RegisterForm::class)->name('register');
+    Route::get('/login', LoginForm::class)->name('login');
+    Route::get('/forgot-password', ForgotPassword::class)->name('password.request');
+    Route::get('/reset-password/{token}', ResetPassword::class)->name('password.reset');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/orders', MyOrders::class)->name('orders.my');
+    Route::get('/orders/{order}', ShowOrder::class)->name('orders.show');
+});

@@ -10,25 +10,21 @@
             <a wire:navigate href="{{ route('how-it-works') }}" class="hover:text-primary transition">How it Works</a>
             <a wire:navigate href="{{ route('pricing') }}" class="hover:text-primary transition">Pricing</a>
             <a wire:navigate href="{{ route('reviews') }}" class="hover:text-primary transition">Reviews</a>
-
-            <!-- Dropdown -->
-            <div x-data="{ drop: false }" class="relative">
-                <button @click="drop = !drop" class="hover:text-primary transition focus:outline-none">
-                    Resources ▾
-                </button>
-                <div x-show="drop" @click.away="drop = false" x-transition
-                    class="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-lg text-left z-50">
-                    <a wire:navigate href="{{ route('about') }}" class="block px-4 py-2 hover:bg-gray-100">About Us</a>
-                    <a wire:navigate href="{{ route('rights') }}" class="block px-4 py-2 hover:bg-gray-100">Client
-                        Rights</a>
-                </div>
-            </div>
-
             <a wire:navigate href="{{ route('contact') }}" class="hover:text-primary transition">Contact</a>
         </nav>
 
-        <!-- CTA Desktop -->
-        <div class="hidden md:flex items-center">
+        <!-- Desktop CTA + Auth -->
+        <div class="hidden md:flex items-center space-x-4">
+            @guest
+                <a wire:navigate href="{{ route('login') }}" class="text-gray-700 hover:text-primary">Login</a>
+                <a wire:navigate href="{{ route('register') }}" class="text-gray-700 hover:text-primary">Register</a>
+            @endguest
+
+            @auth
+                <a wire:navigate href="{{ route('dashboard') }}" class="text-gray-700 hover:text-primary">Dashboard</a>
+                @livewire('auth.logout')
+            @endauth
+
             <a wire:navigate href="{{ route('pricing') }}"
                 class="bg-gold text-black px-4 py-2 rounded-lg font-bold shadow hover:bg-secondary hover:text-white transition">
                 Order Now
@@ -68,6 +64,20 @@
             </div>
 
             <a wire:navigate href="{{ route('contact') }}" class="block hover:text-primary transition">Contact</a>
+
+            @guest
+                <a wire:navigate href="{{ route('login') }}" class="block hover:text-primary transition">Login</a>
+                <a wire:navigate href="{{ route('register') }}" class="block hover:text-primary transition">Register</a>
+            @endguest
+
+            @auth
+                <a wire:navigate href="{{ route('dashboard') }}" class="block hover:text-primary transition">Dashboard</a>
+                <form wire:submit.prevent="logout">
+                    <button type="submit" class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100 rounded">
+                        Logout
+                    </button>
+                </form>
+            @endauth
 
             <!-- CTA Mobile -->
             <a wire:navigate href="{{ route('pricing') }}"
