@@ -351,6 +351,7 @@
                         <li>✔ Get notified about updates & revisions</li>
                         <li>✔ Access invoices & payment history anytime</li>
                         <li>✔ Faster checkout for future orders</li>
+                        <li>✔ Download your orders easy</li>
                     </ul>
 
                     <div class="mt-4">

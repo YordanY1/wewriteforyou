@@ -35,7 +35,7 @@
     <form wire:submit.prevent="sendMessage" class="flex gap-2">
         <input type="text" wire:model="message" placeholder="Type your message..."
             class="flex-1 border-gray-300 focus:border-primary focus:ring focus:ring-primary/30 rounded-lg p-3">
-        <button type="submit" class="bg-primary text-white px-4 py-2 rounded-lg shadow hover:bg-secondary transition">
+        <button type="submit" class="bg-primary text-white px-4 py-2 rounded-lg shadow hover:bg-secondary transition cursor-pointer">
             Send
         </button>
     </form>

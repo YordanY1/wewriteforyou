@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Order;
 use App\Models\ChatMessage;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\AdminChatMessageMail;
+use Illuminate\Support\Facades\Mail;
 
 class OrderChat extends Component
 {
@@ -19,7 +21,7 @@ class OrderChat extends Component
     public function mount(Order $order)
     {
         $this->order = $order;
-        
+
         ChatMessage::where('order_id', $this->order->id)
             ->where('sender_type', 'admin')
             ->where('is_read', false)
@@ -30,13 +32,16 @@ class OrderChat extends Component
     {
         $this->validate();
 
-        ChatMessage::create([
+        $message = ChatMessage::create([
             'order_id'   => $this->order->id,
             'user_id'    => Auth::id(),
             'sender_type' => 'client',
             'message'    => $this->message,
             'is_read'    => false,
         ]);
+
+        Mail::to(config('mail.admin_address', 'admin@wewriteforyou.com'))
+            ->send(new AdminChatMessageMail($message));
 
         $this->reset('message');
 

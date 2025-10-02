@@ -119,7 +119,20 @@
                     <li>⏰ <strong>Deadline:</strong> {{ $order->deadline_option }}
                         ({{ $order->deadline_at?->format('d M Y, H:i') }})</li>
                     <li>💷 <strong>Total Paid:</strong> £{{ number_format($order->final_price, 2) }}</li>
-                    <li>📌 <strong>Status:</strong> <span class="highlight">Paid</span></li>
+                    <li>
+                        📌 <strong>Payment Status:</strong>
+                        <span class="highlight">
+                            {{ ucfirst($order->payment_status) }}
+                        </span>
+                    </li>
+
+                    <li>
+                        🚦 <strong>Order Status:</strong>
+                        <span class="highlight">
+                            {{ ucfirst(str_replace('_', ' ', $order->order_status)) }}
+                        </span>
+                    </li>
+
                     <li>🗓 <strong>Created At:</strong> {{ $order->created_at->format('d M Y, H:i') }}</li>
                 </ul>
             </div>

@@ -25,7 +25,9 @@ class Order extends Model
         'final_price',
         'currency_id',
         'reference_code',
-        'topic'
+        'topic',
+        'order_status',
+        'payment_status', 
     ];
 
     public function user()
