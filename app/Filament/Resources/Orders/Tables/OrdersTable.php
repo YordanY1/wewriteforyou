@@ -17,9 +17,11 @@ class OrdersTable
     {
         return $table
             ->columns([
+                // ID и реф код
                 TextColumn::make('id')
                     ->sortable()
-                    ->searchable(),
+                    ->toggleable()
+                    ->label('#'),
 
                 TextColumn::make('reference_code')
                     ->label('Reference')
@@ -27,14 +29,76 @@ class OrdersTable
                     ->sortable()
                     ->searchable(),
 
+                // Клиент
                 TextColumn::make('user.name')
                     ->label('Client')
                     ->sortable()
+                    ->searchable()
                     ->toggleable(),
 
                 TextColumn::make('email')
                     ->sortable()
+                    ->searchable()
                     ->toggleable(),
+
+                // Assignment / Service / Subject
+                TextColumn::make('assignmentType.name')
+                    ->label('Assignment Type')
+                    ->sortable()
+                    ->toggleable(),
+
+                TextColumn::make('service.name')
+                    ->label('Service')
+                    ->sortable()
+                    ->toggleable(),
+
+                TextColumn::make('subject.name')
+                    ->label('Subject')
+                    ->sortable()
+                    ->toggleable(),
+
+                // Academic level / Language / Style
+                TextColumn::make('academicLevel.name')
+                    ->label('Level')
+                    ->sortable()
+                    ->toggleable(),
+
+                TextColumn::make('language.name')
+                    ->label('Language')
+                    ->sortable()
+                    ->toggleable(),
+
+                TextColumn::make('style.name')
+                    ->label('Style')
+                    ->sortable()
+                    ->toggleable(),
+
+                // Topic
+                TextColumn::make('topic')
+                    ->label('Topic')
+                    ->limit(40)
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
+
+                // Words & Pages
+                TextColumn::make('words')
+                    ->sortable()
+                    ->label('Words'),
+
+                TextColumn::make('pages')
+                    ->sortable()
+                    ->label('Pages'),
+
+                // Deadline
+                TextColumn::make('deadline_option')
+                    ->label('Deadline Option')
+                    ->sortable(),
+
+                TextColumn::make('deadline_at')
+                    ->dateTime('d M Y H:i')
+                    ->label('Deadline At')
+                    ->sortable(),
 
                 // Order Status
                 BadgeColumn::make('order_status')
@@ -58,16 +122,24 @@ class OrdersTable
                         'success'   => 'paid',
                         'danger'    => 'refunded',
                     ])
-                    ->formatStateUsing(fn(string $state): string => ucfirst($state))
+                    ->sortable(),
+
+                // Prices
+                TextColumn::make('base_price')
+                    ->money(fn($record) => $record->currency->code ?? 'GBP')
+                    ->label('Base Price')
                     ->sortable(),
 
                 TextColumn::make('final_price')
-                    ->money('GBP')
+                    ->money(fn($record) => $record->currency->code ?? 'GBP')
+                    ->label('Final Price')
                     ->sortable(),
 
+                // Created At
                 TextColumn::make('created_at')
                     ->dateTime('d M Y H:i')
-                    ->sortable(),
+                    ->sortable()
+                    ->label('Created'),
             ])
             ->filters([
                 SelectFilter::make('order_status')
@@ -88,6 +160,18 @@ class OrdersTable
                         'paid' => 'Paid',
                         'refunded' => 'Refunded',
                     ]),
+
+                SelectFilter::make('service_id')
+                    ->label('Service')
+                    ->relationship('service', 'name'),
+
+                SelectFilter::make('subject_id')
+                    ->label('Subject')
+                    ->relationship('subject', 'name'),
+
+                SelectFilter::make('language_id')
+                    ->label('Language')
+                    ->relationship('language', 'name'),
             ])
             ->recordActions([
                 EditAction::make(),
