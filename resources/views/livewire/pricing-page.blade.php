@@ -13,28 +13,23 @@
                     <th class="px-6 py-4">Words</th>
                     <th class="px-6 py-4">7 Days</th>
                     <th class="px-6 py-4">3 Days</th>
-                    <th class="px-6 py-4">24 Hours</th>
+                    <th class="px-6 py-4">2 Days</th>
+                    <th class="px-6 py-4">1 Day</th>
+                    <th class="px-6 py-4">12 Hours</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white hover:bg-gray-50 transition">
-                    <td class="px-6 py-4 font-semibold">500</td>
-                    <td class="px-6 py-4">£20</td>
-                    <td class="px-6 py-4">£25</td>
-                    <td class="px-6 py-4 text-red-600 font-bold">£30</td>
-                </tr>
-                <tr class="bg-gray-50 hover:bg-gray-100 transition">
-                    <td class="px-6 py-4 font-semibold">1000</td>
-                    <td class="px-6 py-4">£35</td>
-                    <td class="px-6 py-4">£45</td>
-                    <td class="px-6 py-4 text-red-600 font-bold">£50</td>
-                </tr>
-                <tr class="bg-white hover:bg-gray-50 transition">
-                    <td class="px-6 py-4 font-semibold">2000</td>
-                    <td class="px-6 py-4">£60</td>
-                    <td class="px-6 py-4">£75</td>
-                    <td class="px-6 py-4 text-red-600 font-bold">£95</td>
-                </tr>
+                @foreach ($pricings as $pricing)
+                    <tr class="bg-white hover:bg-gray-50 transition">
+                        <td class="px-6 py-4 font-semibold">{{ $pricing->words }}</td>
+                        <td class="px-6 py-4">{{ $pricing->currency->symbol }}{{ $pricing->d7 }}</td>
+                        <td class="px-6 py-4">{{ $pricing->currency->symbol }}{{ $pricing->d3 }}</td>
+                        <td class="px-6 py-4">{{ $pricing->currency->symbol }}{{ $pricing->d2 }}</td>
+                        <td class="px-6 py-4">{{ $pricing->currency->symbol }}{{ $pricing->d1 }}</td>
+                        <td class="px-6 py-4 text-red-600 font-bold">
+                            {{ $pricing->currency->symbol }}{{ $pricing->h12 }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -45,33 +40,27 @@
         <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition text-center">
             <h3 class="text-2xl font-bold mb-4 text-primary">Standard</h3>
             <p class="text-gray-600 mb-6">Best for students who plan ahead. Delivery in 5–7 days.</p>
-            <p class="text-3xl font-extrabold mb-6">From £20</p>
-            {{-- <a href="{{ route('order') }}"
-                class="bg-gold text-black px-6 py-3 rounded-lg font-bold shadow hover:bg-secondary hover:text-white transition cursor-pointer">
-                Choose Standard
-            </a> --}}
+            <p class="text-3xl font-extrabold mb-6">
+                From {{ $pricings->first()->currency->symbol }}{{ $standardPrice }}
+            </p>
         </div>
 
         <!-- Express -->
         <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition text-center border-2 border-gold">
             <h3 class="text-2xl font-bold mb-4 text-secondary">Express</h3>
             <p class="text-gray-600 mb-6">Tighter deadline? We deliver in 2–3 days with priority service.</p>
-            <p class="text-3xl font-extrabold mb-6">From £45</p>
-            {{-- <a href="{{ route('order') }}"
-                class="bg-secondary text-white px-6 py-3 rounded-lg font-bold shadow hover:bg-gold hover:text-black transition cursor-pointer">
-                Choose Express
-            </a> --}}
+            <p class="text-3xl font-extrabold mb-6">
+                From {{ $pricings->first()->currency->symbol }}{{ $expressPrice }}
+            </p>
         </div>
 
         <!-- Urgent -->
         <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition text-center">
             <h3 class="text-2xl font-bold mb-4 text-red-600">Urgent</h3>
             <p class="text-gray-600 mb-6">Need it within 24 hours? Our urgent service has you covered.</p>
-            <p class="text-3xl font-extrabold mb-6">From £50</p>
-            {{-- <a href="{{ route('order') }}"
-                class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold shadow hover:bg-dark transition cursor-pointer">
-                Choose Urgent
-            </a> --}}
+            <p class="text-3xl font-extrabold mb-6">
+                From {{ $pricings->first()->currency->symbol }}{{ $urgentPrice }}
+            </p>
         </div>
     </div>
 </div>

@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasSlug;
 
 class AssignmentType extends Model
 {
+    use HasSlug;
+
     protected $fillable = ['name', 'slug', 'parent_id'];
 
     public function parent()

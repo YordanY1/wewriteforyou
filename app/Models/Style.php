@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasSlug;
 
 class Style extends Model
 {
+    use HasSlug;
     protected $fillable = ['name', 'slug'];
 
     public function orders()
