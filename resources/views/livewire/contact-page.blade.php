@@ -3,7 +3,7 @@
     <h1 class="text-5xl font-extrabold text-primary text-center mb-6">Get in Touch</h1>
     <p class="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12">
         Have questions, feedback, or need help with an order?
-        Reach out to us and we’ll respond as soon as possible.
+        Reach out and we’ll respond as soon as possible.
     </p>
 
     <!-- Info -->
@@ -11,7 +11,8 @@
         <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
             <div class="text-3xl mb-3">📧</div>
             <p class="font-bold">Email</p>
-            <a href="mailto:support@wewriteforyou.com" class="text-primary hover:underline">
+            <a href="mailto:support@wewriteforyou.com" class="text-primary hover:underline"
+                aria-label="Email support@wewriteforyou.com">
                 support@wewriteforyou.com
             </a>
         </div>
@@ -23,8 +24,14 @@
         <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
             <div class="text-3xl mb-3">💬</div>
             <p class="font-bold">Live Chat</p>
-            <p class="text-gray-600">Coming soon in your profile area</p>
+
+            @auth
+                <p class="text-gray-600">Coming soon in your profile area</p>
+            @else
+                <p class="text-gray-600">Available for registered users only</p>
+            @endauth
         </div>
+
     </div>
 
     <!-- Contact Form -->

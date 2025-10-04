@@ -25,10 +25,10 @@
                 @livewire('auth.logout')
             @endauth
 
-            <a wire:navigate href="{{ route('pricing') }}"
-                class="bg-gold text-black px-4 py-2 rounded-lg font-bold shadow hover:bg-secondary hover:text-white transition">
+            <button wire:click="$dispatch('openOrderForm')"
+                class="bg-gold text-black px-4 py-2 rounded-lg font-bold shadow hover:bg-secondary hover:text-white transition cursor-pointer">
                 Order Now
-            </a>
+            </button>
         </div>
 
         <!-- Burger Button (mobile) -->
@@ -80,10 +80,10 @@
             @endauth
 
             <!-- CTA Mobile -->
-            <a wire:navigate href="{{ route('pricing') }}"
-                class="block bg-gold text-black px-4 py-2 rounded-lg font-bold shadow hover:bg-secondary hover:text-white transition text-center">
+            <button wire:click="$dispatch('openOrderForm')"
+                class="block bg-gold text-black px-4 py-2 rounded-lg font-bold shadow hover:bg-secondary hover:text-white transition text-center cursor-pointer">
                 Order Now
-            </a>
+            </button>
         </div>
     </nav>
 </header>

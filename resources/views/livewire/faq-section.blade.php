@@ -1,11 +1,13 @@
 <section id="faq" class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-extrabold text-primary text-center mb-12">Frequently Asked Questions</h2>
+        <h2 class="text-4xl font-extrabold text-primary text-center mb-12">
+            FAQ – Essay & Assignment Writing Services UK
+        </h2>
 
         <div class="max-w-3xl mx-auto divide-y divide-gray-200">
             @foreach ($faqs as $index => $faq)
-                <div x-data="{ open: false }" class="py-4">
-                    <button @click="open = !open"
+                <div x-data="{ open: {{ $index === 0 ? 'true' : 'false' }} }" class="py-4">
+                    <button @click="open = !open" :aria-expanded="open.toString()"
                         class="w-full flex justify-between items-center text-left focus:outline-none">
                         <span class="text-lg font-semibold text-gray-900">{{ $faq['question'] }}</span>
                         <svg x-show="!open" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor"
@@ -26,3 +28,27 @@
         </div>
     </div>
 </section>
+
+{{-- FAQ Schema Markup --}}
+@php
+    $faqSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => collect($faqs)
+            ->map(
+                fn($faq) => [
+                    '@type' => 'Question',
+                    'name' => $faq['question'],
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => $faq['answer'],
+                    ],
+                ],
+            )
+            ->toArray(),
+    ];
+@endphp
+
+<script type="application/ld+json">
+{!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) !!}
+</script>

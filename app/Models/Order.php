@@ -20,14 +20,13 @@ class Order extends Model
         'deadline_option',
         'deadline_at',
         'instructions',
-        'status',
         'base_price',
         'final_price',
         'currency_id',
         'reference_code',
         'topic',
         'order_status',
-        'payment_status', 
+        'payment_status',
     ];
 
     public function user()

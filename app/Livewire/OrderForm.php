@@ -81,7 +81,7 @@ class OrderForm extends Component
             'topic'             => 'nullable|string|max:255',
             'words'             => 'required|integer|min:275',
             'deadline_option'   => 'required',
-        ] + (Auth::check() ? [] : ['email' => 'required|email'])); 
+        ] + (Auth::check() ? [] : ['email' => 'required|email']));
 
         $calculator = new PriceCalculator();
         $priceData = $calculator->calculate(
@@ -108,7 +108,6 @@ class OrderForm extends Component
             'final_price'       => $priceData['total'],
             'currency_id'       => 1,
             'reference_code'    => strtoupper(uniqid('ORD-')),
-            'status'            => 'awaiting_payment',
         ]);
 
         // Add-ons

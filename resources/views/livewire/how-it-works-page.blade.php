@@ -1,5 +1,7 @@
 <div class="container mx-auto px-6 py-20">
-    <h1 class="text-5xl font-extrabold text-primary mb-16 text-center">How It Works</h1>
+    <h1 class="text-5xl font-extrabold text-primary mb-16 text-center">
+        How Our Essay Writing Service Works in the UK
+    </h1>
 
     <div class="space-y-24">
 
@@ -12,14 +14,13 @@
             <div>
                 <h2 class="text-3xl font-bold mb-4">Step 1: Submit Your Requirements</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    Start by filling in our quick and intuitive <span class="font-semibold">order form</span>.
-                    Simply let us know the type of work you need (essay, report, dissertation), the <span
-                        class="font-semibold">word count</span>,
-                    the subject area, and your deadline.
+                    Fill in our quick <span class="font-semibold">order form</span> with your paper details –
+                    type of assignment (essay, report, dissertation), <span class="font-semibold">word count</span>,
+                    subject area, and deadline.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    The more details you provide, the easier it is for us to match you with the perfect writer
-                    who understands your field and can deliver the quality you expect.
+                    The more details you share, the easier it is for us to match you with
+                    a <span class="font-semibold">UK-based academic writer</span> who understands your field.
                 </p>
             </div>
         </div>
@@ -33,13 +34,12 @@
             <div>
                 <h2 class="text-3xl font-bold mb-4">Step 2: Make a Secure Payment</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    Choose the payment method that suits you best – <span class="font-semibold">Visa, Mastercard,
-                        Stripe, or Apple Pay</span>.
-                    Our platform uses bank-grade encryption, so your details are 100% safe.
+                    Pay safely with <span class="font-semibold">Visa, Mastercard, Stripe, or Apple Pay</span>.
+                    Our platform uses <span class="font-semibold">bank-grade encryption</span> for 100% protection.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    Once payment is confirmed, your order is instantly logged in our system, and the countdown to
-                    delivery begins.
+                    Once payment is confirmed, your order is <span class="font-semibold">instantly logged</span>
+                    in our system, and the countdown to delivery begins.
                 </p>
             </div>
         </div>
@@ -51,14 +51,14 @@
                 👨‍💻
             </div>
             <div>
-                <h2 class="text-3xl font-bold mb-4">Step 3: Our Writers Get to Work</h2>
+                <h2 class="text-3xl font-bold mb-4">Step 3: Professional Writers Get to Work</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    A professional writer with the right expertise is assigned to your project.
-                    They begin research, drafting, and structuring your paper straight away.
+                    A qualified writer with <span class="font-semibold">expertise in your subject</span> is assigned
+                    to your project. They start researching, drafting, and structuring your paper immediately.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    Throughout the process, you can <span class="font-semibold">track progress in your profile</span>,
-                    and even send messages directly if you want to clarify details or add extra notes.
+                    You can <span class="font-semibold">track progress</span> from your profile
+                    and message your writer if you need to add details or clarifications.
                 </p>
             </div>
         </div>
@@ -70,27 +70,25 @@
                 📦
             </div>
             <div>
-                <h2 class="text-3xl font-bold mb-4">Step 4: Track & Receive Your Order</h2>
+                <h2 class="text-3xl font-bold mb-4">Step 4: Download Your Completed Paper</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    Once your work is complete, you’ll receive a notification.
-                    You can <span class="font-semibold">download your finished paper directly</span> from your profile
-                    dashboard.
+                    Once your work is finished, you’ll get a notification.
+                    Simply log in and <span class="font-semibold">download your essay</span>, ready to submit.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    Every order comes with a satisfaction guarantee – if something doesn’t feel right,
-                    you can request adjustments or revisions within your rights as a client.
+                    Every paper comes with a <span class="font-semibold">satisfaction guarantee</span> –
+                    request free revisions if something needs adjusting.
                 </p>
             </div>
         </div>
-
     </div>
 
     <!-- CTA -->
-    {{-- <div class="text-center mt-24">
-        <a href="{{ route('order') }}"
+    <div class="text-center mt-24">
+        <a href="{{ route('pricing') }}" wire:navigate
             class="bg-gold text-black px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:bg-secondary hover:text-white transition cursor-pointer">
-            Get Started Now
+            See Pricing & Order
         </a>
-        <p class="mt-4 text-gray-500">No account needed — place your first order as a guest.</p>
-    </div> --}}
+        <p class="mt-4 text-gray-500">No hidden fees – prices in GBP only.</p>
+    </div>
 </div>

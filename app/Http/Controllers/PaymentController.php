@@ -28,21 +28,30 @@ class PaymentController extends Controller
             $order = \App\Models\Order::where('reference_code', $reference)->first();
 
             if ($order) {
-                $oldStatus = $order->status ?? 'new';
-                $order->update(['status' => 'paid']);
+                $oldPaymentStatus = $order->payment_status ?? 'unpaid';
+                $oldOrderStatus   = $order->order_status ?? 'draft';
 
-                $order->statusHistories()->create([
-                    'old_status' => $oldStatus,
-                    'new_status' => 'paid',
-                    'changed_by' => null,
+    
+                $order->update([
+                    'payment_status' => 'paid',
+                    'order_status'   => 'draft',
                 ]);
 
-                // try {
-                //     \Mail::to($order->email)
-                //         ->queue(new \App\Mail\OrderPaidMail($order));
-                // } catch (\Exception $e) {
-                //     \Log::error("Mail to customer failed: " . $e->getMessage());
-                // }
+
+                $order->statusHistories()->create([
+                    'old_payment_status' => $oldPaymentStatus,
+                    'new_payment_status' => 'paid',
+                    'old_order_status'   => $oldOrderStatus,
+                    'new_order_status'   => 'draft',
+                    'changed_by'         => null,
+                ]);
+
+                try {
+                    \Mail::to($order->email)
+                        ->queue(new \App\Mail\OrderPaidMail($order));
+                } catch (\Exception $e) {
+                    \Log::error("Mail to customer failed: " . $e->getMessage());
+                }
 
                 try {
                     \Mail::to(config('mail.admin_recipients'))

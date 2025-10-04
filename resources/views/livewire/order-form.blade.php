@@ -343,24 +343,27 @@
                     </div>
                 </div>
 
-                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                    <h3 class="text-lg font-bold text-blue-800 mb-2">Why create an account? 🤔</h3>
-                    <ul class="space-y-1 text-blue-700 text-sm">
-                        <li>✔ Track all your orders in one place</li>
-                        <li>✔ Chat directly with your writer / support team</li>
-                        <li>✔ Get notified about updates & revisions</li>
-                        <li>✔ Access invoices & payment history anytime</li>
-                        <li>✔ Faster checkout for future orders</li>
-                        <li>✔ Download your orders easy</li>
-                    </ul>
+                @guest
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <h3 class="text-lg font-bold text-blue-800 mb-2">Why create an account? 🤔</h3>
+                        <ul class="space-y-1 text-blue-700 text-sm">
+                            <li>✔ Track all your orders in one place</li>
+                            <li>✔ Chat directly with your writer / support team</li>
+                            <li>✔ Get notified about updates & revisions</li>
+                            <li>✔ Access invoices & payment history anytime</li>
+                            <li>✔ Faster checkout for future orders</li>
+                            <li>✔ Download your orders easy</li>
+                        </ul>
 
-                    <div class="mt-4">
-                        <a href="{{ route('register') }}"
-                            class="inline-block bg-primary text-white px-4 py-2 rounded-lg shadow hover:bg-primary/80 transition">
-                            👉 Create your free account
-                        </a>
+                        <div class="mt-4">
+                            <a href="{{ route('register') }}"
+                                class="inline-block bg-primary text-white px-4 py-2 rounded-lg shadow hover:bg-primary/80 transition">
+                                👉 Create your free account
+                            </a>
+                        </div>
                     </div>
-                </div>
+                @endguest
+
 
                 <div class="flex justify-between mt-8">
 

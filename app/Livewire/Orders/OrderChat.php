@@ -28,6 +28,16 @@ class OrderChat extends Component
             ->update(['is_read' => true]);
     }
 
+    public function loadMessages()
+    {
+        $this->messages = \App\Models\ChatMessage::where('order_id', $this->order->id)
+            ->latest()
+            ->take(50)
+            ->get()
+            ->reverse();
+    }
+
+
     public function sendMessage()
     {
         $this->validate();

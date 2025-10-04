@@ -23,6 +23,10 @@ class PricingPage extends Component
 
     public function render()
     {
-        return view('livewire.pricing-page')->layout('layouts.app');
+        return view('livewire.pricing-page', [
+            'title' => 'Essay Writing Pricing UK | Affordable Assignment Help',
+            'description' => 'Transparent essay writing pricing in the UK. Check our rates per word for standard, express and urgent delivery. No hidden fees – pay in GBP.',
+            'keywords' => 'essay writing prices UK, assignment help cost, dissertation prices UK, affordable essay writing',
+        ])->layout('layouts.app');
     }
 }
