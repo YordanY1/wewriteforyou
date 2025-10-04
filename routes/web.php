@@ -16,6 +16,9 @@ use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Dashboard;
 use App\Livewire\Orders\MyOrders;
 use App\Livewire\Orders\ShowOrder;
+use App\Livewire\TermsPage;
+use App\Livewire\PrivacyPolicyPage;
+use App\Livewire\CookiePolicyPage;
 
 
 Route::get('/', Home::class)->name('home');
@@ -29,6 +32,10 @@ Route::get('/contact', ContactPage::class)->name('contact');
 
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
+
+Route::get('/terms-and-conditions', TermsPage::class)->name('terms');
+Route::get('/privacy-policy', PrivacyPolicyPage::class)->name('privacy-policy');
+Route::get('/cookie.policy', CookiePolicyPage::class)->name('cookie.policy');
 
 
 Route::middleware('guest')->group(function () {

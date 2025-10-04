@@ -7,6 +7,9 @@
             <a wire:navigate href="{{ route('contact') }}" class="hover:text-gold transition">Contact</a>
             <a wire:navigate href="{{ route('about') }}" class="hover:text-gold transition">About</a>
             <a wire:navigate href="{{ route('pricing') }}" class="hover:text-gold transition">Pricing</a>
+            <a wire:navigate href="{{ route('terms') }}" class="hover:text-gold transition">Terms & Conditions</a>
+            <a wire:navigate href="{{ route('privacy-policy') }}" class="hover:text-gold transition">Privacy Policy</a>
+            <a wire:navigate href="{{ route('cookie.policy') }}" class="hover:text-gold transition">Cookie Policy</a>
         </div>
     </div>
 </footer>

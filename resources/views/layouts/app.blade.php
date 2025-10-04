@@ -77,6 +77,9 @@
 
     @livewire('footer')
 
+    <livewire:cookie-consent />
+
+
     @livewireScripts
 
     <script>
