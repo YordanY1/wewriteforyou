@@ -35,7 +35,7 @@ Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payme
 
 Route::get('/terms-and-conditions', TermsPage::class)->name('terms');
 Route::get('/privacy-policy', PrivacyPolicyPage::class)->name('privacy-policy');
-Route::get('/cookie.policy', CookiePolicyPage::class)->name('cookie.policy');
+Route::get('/cookie-policy', CookiePolicyPage::class)->name('cookie.policy');
 
 
 Route::middleware('guest')->group(function () {
@@ -50,3 +50,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders', MyOrders::class)->name('orders.my');
     Route::get('/orders/{order}', ShowOrder::class)->name('orders.show');
 });
+
+Route::get('/health', fn() => response()->json(['status' => 'ok']))->name('health');

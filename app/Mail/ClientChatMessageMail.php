@@ -20,7 +20,7 @@ class ClientChatMessageMail extends Mailable
 
     public function build()
     {
-        return $this->subject('New message from WeWriteForYou Support')
+        return $this->subject('New message from BullWrite Support')
             ->view('emails.chat.client-message')
             ->with([
                 'chatMessage' => $this->chatMessage,

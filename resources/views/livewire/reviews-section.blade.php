@@ -1,7 +1,7 @@
 <section id="reviews" class="bg-gray-100 py-20">
     <div class="container mx-auto px-6 text-center">
         <h2 class="text-4xl font-extrabold text-primary mb-12">
-            Student Reviews – Essay & Assignment Writing UK
+            Student Reviews – BullWrite Editing & Feedback
         </h2>
 
         <div class="grid md:grid-cols-3 gap-8">
@@ -11,7 +11,9 @@
                         aria-label="Rating: {{ $review->rating }} out of 5 stars">
                         {{ str_repeat('⭐', $review->rating) }}
                     </div>
-                    <p class="text-gray-700 italic">“{{ $review->comment }}”</p>
+                    <p class="text-gray-700 italic">
+                        “{{ Str::limit($review->comment, 180) }}”
+                    </p>
                     <div class="mt-6 font-semibold text-primary">
                         — {{ $review->user?->name ?? $review->author_name }}
                     </div>
@@ -31,22 +33,27 @@
     </div>
 </section>
 
-
 @php
     $aggregateRating = [
         '@type' => 'AggregateRating',
-        'ratingValue' => number_format($reviews->avg('rating'), 1),
+        'ratingValue' => number_format($reviews->avg('rating') ?? 5, 1),
         'reviewCount' => $reviews->count(),
     ];
 
     $reviewSchema = [
         '@context' => 'https://schema.org',
-        '@type' => 'Product',
-        'name' => 'WeWriteForYou Academic Writing Services',
+        '@type' => 'Organization',
+        'name' => 'BullWrite Academic Editing & Feedback',
+        'url' => url('/'),
         'aggregateRating' => $aggregateRating,
+        'sameAs' => [
+            'https://twitter.com/BullWriteUK',
+            'https://www.facebook.com/BullWrite',
+            'https://www.instagram.com/BullWrite',
+        ],
     ];
 @endphp
 
 <script type="application/ld+json">
-{!! json_encode($reviewSchema, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) !!}
+{!! json_encode($reviewSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>

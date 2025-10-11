@@ -75,7 +75,7 @@
         </div>
 
         <div class="footer">
-            This message was sent via the <strong>WeWriteForYou</strong> website contact form.
+            This message was sent via the <strong>BullWrite</strong> website contact form.
         </div>
     </div>
 </body>

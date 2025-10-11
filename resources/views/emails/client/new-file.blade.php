@@ -80,7 +80,7 @@
         @endif
 
         <div class="footer">
-            &copy; {{ date('Y') }} WeWriteForYou
+            &copy; {{ date('Y') }} BullWrite
         </div>
     </div>
 </body>

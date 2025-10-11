@@ -24,9 +24,9 @@ class PricingPage extends Component
     public function render()
     {
         return view('livewire.pricing-page', [
-            'title' => 'Essay Writing Pricing UK | Affordable Assignment Help',
-            'description' => 'Transparent essay writing pricing in the UK. Check our rates per word for standard, express and urgent delivery. No hidden fees – pay in GBP.',
-            'keywords' => 'essay writing prices UK, assignment help cost, dissertation prices UK, affordable essay writing',
+            'title' => 'Editing & Feedback Pricing – BullWrite UK',
+            'description' => 'Transparent and affordable pricing for BullWrite editing and feedback services. View rates per word for standard and express turnaround options.',
+            'keywords' => 'academic editing UK, proofreading cost, essay feedback price, writing improvement UK',
         ])->layout('layouts.app');
     }
 }

@@ -1,7 +1,7 @@
 <section id="faq" class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
         <h2 class="text-4xl font-extrabold text-primary text-center mb-12">
-            FAQ – Essay & Assignment Writing Services UK
+            FAQ – BullWrite Editing & Feedback Services
         </h2>
 
         <div class="max-w-3xl mx-auto divide-y divide-gray-200">

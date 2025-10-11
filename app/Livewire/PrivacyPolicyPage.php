@@ -8,11 +8,12 @@ class PrivacyPolicyPage extends Component
 {
     public function render()
     {
-        $title = 'Privacy Policy | WeWriteForYou UK';
-        $description = 'Read our Privacy Policy to learn how WeWriteForYou handles your data under GDPR and UK law.';
-        $keywords = 'privacy policy, GDPR, essay writing UK, WeWriteForYou data protection';
+        $title = 'Privacy Policy | BullWrite UK';
+        $description = 'Learn how BullWrite securely handles and protects your personal data in full compliance with GDPR and UK Data Protection laws.';
+        $keywords = 'privacy policy, GDPR compliance, data protection UK, BullWrite privacy, user information security';
+        $robots = 'index, follow';
 
-        return view('livewire.privacy-policy-page', compact('title', 'description', 'keywords'))
+        return view('livewire.privacy-policy-page', compact('title', 'description', 'keywords', 'robots'))
             ->layout('layouts.app');
     }
 }

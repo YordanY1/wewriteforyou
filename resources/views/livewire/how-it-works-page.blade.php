@@ -1,6 +1,6 @@
 <div class="container mx-auto px-6 py-20">
     <h1 class="text-5xl font-extrabold text-primary mb-16 text-center">
-        How Our Essay Writing Service Works in the UK
+        How BullWrite Helps You Improve Your Writing
     </h1>
 
     <div class="space-y-24">
@@ -12,15 +12,14 @@
                 📝
             </div>
             <div>
-                <h2 class="text-3xl font-bold mb-4">Step 1: Submit Your Requirements</h2>
+                <h2 class="text-3xl font-bold mb-4">Step 1: Upload Your Draft or Topic</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    Fill in our quick <span class="font-semibold">order form</span> with your paper details –
-                    type of assignment (essay, report, dissertation), <span class="font-semibold">word count</span>,
-                    subject area, and deadline.
+                    Share your document or topic details through our secure form.
+                    Include any instructions or notes you’d like our editors to focus on — structure, grammar, clarity,
+                    or argument flow.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    The more details you share, the easier it is for us to match you with
-                    a <span class="font-semibold">UK-based academic writer</span> who understands your field.
+                    The more context you give, the more tailored and actionable your feedback will be.
                 </p>
             </div>
         </div>
@@ -32,14 +31,13 @@
                 💳
             </div>
             <div>
-                <h2 class="text-3xl font-bold mb-4">Step 2: Make a Secure Payment</h2>
+                <h2 class="text-3xl font-bold mb-4">Step 2: Confirm Your Plan</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    Pay safely with <span class="font-semibold">Visa, Mastercard, Stripe, or Apple Pay</span>.
-                    Our platform uses <span class="font-semibold">bank-grade encryption</span> for 100% protection.
+                    Select your preferred turnaround time — from 5–7 days to express 24-hour review — and pay securely
+                    via Stripe or Apple Pay.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    Once payment is confirmed, your order is <span class="font-semibold">instantly logged</span>
-                    in our system, and the countdown to delivery begins.
+                    Once confirmed, your document is assigned to a qualified UK academic editor for professional review.
                 </p>
             </div>
         </div>
@@ -51,14 +49,13 @@
                 👨‍💻
             </div>
             <div>
-                <h2 class="text-3xl font-bold mb-4">Step 3: Professional Writers Get to Work</h2>
+                <h2 class="text-3xl font-bold mb-4">Step 3: Receive Expert Feedback</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    A qualified writer with <span class="font-semibold">expertise in your subject</span> is assigned
-                    to your project. They start researching, drafting, and structuring your paper immediately.
+                    Our editor carefully reviews your work, adding detailed comments and suggestions to strengthen your
+                    writing, structure, and academic tone.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    You can <span class="font-semibold">track progress</span> from your profile
-                    and message your writer if you need to add details or clarifications.
+                    You’ll receive a marked-up version of your document, showing exactly what was improved and why.
                 </p>
             </div>
         </div>
@@ -70,14 +67,13 @@
                 📦
             </div>
             <div>
-                <h2 class="text-3xl font-bold mb-4">Step 4: Download Your Completed Paper</h2>
+                <h2 class="text-3xl font-bold mb-4">Step 4: Review & Apply Changes</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    Once your work is finished, you’ll get a notification.
-                    Simply log in and <span class="font-semibold">download your essay</span>, ready to submit.
+                    Once feedback is ready, you’ll receive an email notification.
+                    Log in to download your edited document and apply the recommended improvements before submission.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    Every paper comes with a <span class="font-semibold">satisfaction guarantee</span> –
-                    request free revisions if something needs adjusting.
+                    BullWrite feedback helps you grow as a writer — every edit is an opportunity to learn.
                 </p>
             </div>
         </div>
@@ -87,8 +83,8 @@
     <div class="text-center mt-24">
         <a href="{{ route('pricing') }}" wire:navigate
             class="bg-gold text-black px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:bg-secondary hover:text-white transition cursor-pointer">
-            See Pricing & Order
+            View Plans & Start Improving
         </a>
-        <p class="mt-4 text-gray-500">No hidden fees – prices in GBP only.</p>
+        <p class="mt-4 text-gray-500">Transparent pricing – no hidden fees.</p>
     </div>
 </div>

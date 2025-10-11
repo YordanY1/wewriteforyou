@@ -31,7 +31,7 @@ class CustomResetPassword extends Notification
         ], false));
 
         return (new \Illuminate\Notifications\Messages\MailMessage)
-            ->subject('🔑 Reset Your Password - WeWriteForYou')
+            ->subject('🔑 Reset Your Password - BullWrite')
             ->view('emails.auth.reset-password', [
                 'url' => $url,
                 'user' => $notifiable,

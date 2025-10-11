@@ -16,9 +16,9 @@ class ReviewsPage extends Component
 
         return view('livewire.reviews-page', [
             'reviews'     => $reviews,
-            'title'       => 'Student Reviews | WeWriteForYou UK',
-            'description' => 'Read genuine reviews from UK students about our essay and assignment writing services. Trusted, reliable, and top-rated academic support.',
-            'keywords'    => 'student reviews UK, essay writing service reviews, WeWriteForYou testimonials',
+            'title'       => 'Client Reviews & Feedback | BullWrite UK',
+            'description' => 'Read authentic client feedback about BullWrite’s academic editing and feedback services. Trusted by UK students for clarity, structure, and originality advice.',
+            'keywords'    => 'BullWrite reviews, academic editing feedback UK, student testimonials, writing improvement services',
         ])->layout('layouts.app');
     }
 }

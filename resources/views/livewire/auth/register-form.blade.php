@@ -1,21 +1,21 @@
 <div class="max-w-md mx-auto bg-white shadow-lg rounded-2xl p-8 space-y-6">
     <div class="text-center">
         <h2 class="text-3xl font-extrabold text-primary">Create Your Account</h2>
-        <p class="mt-2 text-gray-600">Join us and make your study life easier 📚</p>
+        <p class="mt-2 text-gray-600">Join BullWrite and make your academic journey smoother 📚</p>
     </div>
 
     <ul class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-700 space-y-2">
         <li class="flex items-center gap-2">
-            ✅ Get notified about special promotions & discounts for academic work
+            ✅ Receive helpful writing updates and student productivity tips
         </li>
         <li class="flex items-center gap-2">
-            ✅ Easily track the progress and status of your coursework orders
+            ✅ Track your projects and deadlines with ease
         </li>
         <li class="flex items-center gap-2">
-            ✅ Communicate directly with our team regarding your assignments
+            ✅ Communicate directly with our support team anytime
         </li>
         <li class="flex items-center gap-2">
-            ✅ Keep all your essays, reports, and projects organized in one place
+            ✅ Keep your drafts, reports, and documents organized in one place
         </li>
     </ul>
 

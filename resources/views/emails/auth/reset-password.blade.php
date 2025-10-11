@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Password Reset - WeWriteForYou</title>
+    <title>Password Reset - BullWrite</title>
 </head>
 
 <body style="font-family: Arial, sans-serif; background: #f9fafb; margin: 0; padding: 40px;">
@@ -22,7 +22,7 @@
         <h2 style="font-size: 20px; font-weight: bold; color: #1f2937;">Hello, {{ $user->name ?? 'Student' }} 👋</h2>
 
         <p style="color: #374151; font-size: 15px; line-height: 1.6;">
-            We received a request to reset your password for your <strong>WeWriteForYou</strong> account.
+            We received a request to reset your password for your <strong>BullWrite</strong> account.
         </p>
 
         <!-- CTA Button -->
@@ -47,7 +47,7 @@
 
         <!-- Footer -->
         <p style="font-size: 12px; color: #9ca3af; text-align: center;">
-            © {{ date('Y') }} WeWriteForYou. All rights reserved.
+            © {{ date('Y') }} BullWrite. All rights reserved.
         </p>
     </div>
 

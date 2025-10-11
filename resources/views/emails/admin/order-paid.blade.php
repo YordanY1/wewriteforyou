@@ -142,7 +142,7 @@
             </a> --}}
         </div>
         <div class="footer">
-            &copy; {{ date('Y') }} WeWriteForYou – Internal Admin Notification
+            &copy; {{ date('Y') }} BullWrite – Internal Admin Notification
         </div>
     </div>
 </body>

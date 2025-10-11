@@ -141,7 +141,9 @@
                         <label class="block font-semibold mb-2">Word Count</label>
                         <input type="text" wire:model.live="words"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
-                        <p class="text-sm text-gray-500">1 page ≈ 275 words</p>
+                        <p class="text-sm text-gray-500">
+                            1 page ≈ 275 words. <span class="text-primary font-semibold">Minimum: 275 words</span>.
+                        </p>
                         @error('words')
                             <p class="text-red-500 text-sm">{{ $message }}</p>
                         @enderror

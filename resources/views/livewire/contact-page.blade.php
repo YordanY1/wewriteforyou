@@ -1,9 +1,11 @@
 <div class="container mx-auto px-6 py-20">
     <!-- Hero -->
-    <h1 class="text-5xl font-extrabold text-primary text-center mb-6">Get in Touch</h1>
-    <p class="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12">
-        Have questions, feedback, or need help with an order?
-        Reach out and we’ll respond as soon as possible.
+    <h1 class="text-5xl font-extrabold text-primary text-center mb-6">
+        Contact BullWrite
+    </h1>
+    <p class="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
+        Have a question about our academic editing and feedback services?
+        We’re here to help — reach out anytime and our support team will respond promptly.
     </p>
 
     <!-- Info -->
@@ -11,27 +13,28 @@
         <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
             <div class="text-3xl mb-3">📧</div>
             <p class="font-bold">Email</p>
-            <a href="mailto:support@wewriteforyou.com" class="text-primary hover:underline"
-                aria-label="Email support@wewriteforyou.com">
-                support@wewriteforyou.com
+            <a href="mailto:support@bullwrite.com" class="text-primary hover:underline"
+                aria-label="Email support@bullwrite.com">
+                support@bullwrite.com
             </a>
         </div>
+
         <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
             <div class="text-3xl mb-3">📱</div>
             <p class="font-bold">Phone</p>
             <p class="text-gray-600">+44 123 456 789</p>
         </div>
+
         <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
             <div class="text-3xl mb-3">💬</div>
             <p class="font-bold">Live Chat</p>
 
             @auth
-                <p class="text-gray-600">Coming soon in your profile area</p>
+                <p class="text-gray-600">Available soon in your dashboard</p>
             @else
-                <p class="text-gray-600">Available for registered users only</p>
+                <p class="text-gray-600">Exclusive to registered clients</p>
             @endauth
         </div>
-
     </div>
 
     <!-- Contact Form -->
@@ -73,5 +76,11 @@
                 Send Message
             </button>
         </form>
+    </div>
+
+    <!-- Note -->
+    <div class="text-center mt-8 text-gray-500 text-sm">
+        Average response time: <strong>under 1 hour</strong>.
+        All messages are handled securely and confidentially.
     </div>
 </div>

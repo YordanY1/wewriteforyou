@@ -58,7 +58,7 @@
             <p>We’ll send you updates as soon as your paper is ready.</p>
         </div>
         <div class="footer">
-            &copy; {{ date('Y') }} WeWriteForYou – All rights reserved.
+            &copy; {{ date('Y') }} BullWrite – All rights reserved.
         </div>
     </div>
 </body>

@@ -9,8 +9,6 @@
 
     <livewire:orders.my-orders />
 
-    {{-- <livewire:orders.order-chat /> --}}
-
     <!-- Logout -->
     <div class="text-right">
         <button wire:click="$dispatch('logout')" class="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700 cursor-pointer">

@@ -36,9 +36,9 @@ class ContactPage extends Component
     public function render()
     {
         return view('livewire.contact-page', [
-            'title'       => 'Contact Us | WeWriteForYou UK',
-            'description' => 'Get in touch with WeWriteForYou. Reach out via email, phone, or our secure contact form.',
-            'keywords'    => 'contact essay help UK, WeWriteForYou support, academic writing contact',
+            'title'       => 'Contact BullWrite | Academic Editing & Support UK',
+            'description' => 'Reach out to BullWrite for academic editing, feedback, and writing improvement support. Available 24/7 for UK students.',
+            'keywords'    => 'academic editing contact UK, BullWrite support, proofreading help, writing improvement service',
         ])->layout('layouts.app');
     }
 }

@@ -50,7 +50,7 @@ class OrderChat extends Component
             'is_read'    => false,
         ]);
 
-        Mail::to(config('mail.admin_address', 'admin@wewriteforyou.com'))
+        Mail::to(config('mail.admin_address', 'admin@bullwrite.com'))
             ->send(new AdminChatMessageMail($message));
 
         $this->reset('message');

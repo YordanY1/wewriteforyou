@@ -42,7 +42,7 @@
         <p><strong>New Status:</strong></p>
         <p class="status">{{ ucfirst(str_replace('_', ' ', $order->order_status)) }}</p>
 
-        
+
         @if ($order->user_id)
             <p style="margin-top:20px;">
                 You can log in to your account to see more details.
@@ -52,7 +52,7 @@
         <p style="font-size:12px; color:#666; margin-top:30px;">
             Sent on {{ now()->format('M d, Y H:i') }}
             <br>
-            &copy; {{ date('Y') }} WeWriteForYou
+            &copy; {{ date('Y') }} BullWrite
         </p>
     </div>
 </body>

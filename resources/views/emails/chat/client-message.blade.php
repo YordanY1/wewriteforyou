@@ -99,7 +99,7 @@
 
         </div>
         <div class="footer">
-            &copy; {{ date('Y') }} WeWriteForYou – Client Support
+            &copy; {{ date('Y') }} BullWrite – Client Support
         </div>
     </div>
 </body>
