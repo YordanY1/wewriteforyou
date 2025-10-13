@@ -19,11 +19,11 @@
             </a>
         </div>
 
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+        {{-- <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
             <div class="text-3xl mb-3">📱</div>
             <p class="font-bold">Phone</p>
             <p class="text-gray-600">+44 123 456 789</p>
-        </div>
+        </div> --}}
 
         <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
             <div class="text-3xl mb-3">💬</div>
