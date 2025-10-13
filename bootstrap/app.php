@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ])
     ->withSchedule(function (Schedule $schedule) {
         $schedule->command('sitemap:generate')->dailyAt('00:00');
+        $schedule->command('queue:work --stop-when-empty --tries=1 --timeout=60 --memory=128 --no-interaction')->everyMinute();
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
