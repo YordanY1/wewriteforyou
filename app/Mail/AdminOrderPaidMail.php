@@ -3,15 +3,10 @@
 namespace App\Mail;
 
 use App\Models\Order;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 
-class AdminOrderPaidMail extends Mailable implements ShouldQueue
+class AdminOrderPaidMail extends Mailable
 {
-    use Queueable, SerializesModels;
-
     public $order;
 
     public function __construct(Order $order)
@@ -21,7 +16,9 @@ class AdminOrderPaidMail extends Mailable implements ShouldQueue
 
     public function build()
     {
-        return $this->subject('✅ New Paid Order: ' . $this->order->reference_code)
+        return $this->subject('💸 New Paid Order: ' . $this->order->reference_code)
+            ->from('support@bullwrite.com', 'BullWrite Orders')
+            ->replyTo('support@bullwrite.com', 'BullWrite Support')
             ->view('emails.admin.order-paid')
             ->with([
                 'order' => $this->order,
