@@ -115,7 +115,5 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
-    'admin_recipients' => array_filter(array_map('trim', explode(',', env('MAIL_FROM_ADDRESS', '')))),
-
-
+    'admin_recipients' => array_filter(array_map('trim', explode(',', env('MAIL_ADMIN_RECIPIENTS', '')))),
 ];

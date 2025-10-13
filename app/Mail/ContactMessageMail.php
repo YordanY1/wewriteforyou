@@ -26,6 +26,7 @@ class ContactMessageMail extends Mailable
         return $this->subject('New Contact Form Message')
             ->from('support@bullwrite.com', 'BullWrite Contact Form')
             ->replyTo($this->email, $this->name)
+            ->to(config('mail.admin_recipients'))
             ->view('emails.contact.contact-message');
     }
 }
