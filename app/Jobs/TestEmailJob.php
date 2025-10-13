@@ -13,7 +13,10 @@ class TestEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $connection = 'database';
+    public function __construct()
+    {
+        $this->connection = 'database'; 
+    }
 
     public function handle(): void
     {
