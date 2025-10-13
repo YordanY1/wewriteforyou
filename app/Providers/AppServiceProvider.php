@@ -10,6 +10,8 @@ use App\Observers\MessageObserver;
 use App\Observers\OrderFileObserver;
 use App\Observers\OrderObserver;
 use App\Observers\ChatMessageObserver;
+use Illuminate\Support\Facades\Schema;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
         ChatMessage::observe(MessageObserver::class);
         OrderFile::observe(OrderFileObserver::class);
         Order::observe(OrderObserver::class);
+        Schema::defaultStringLength(191);
     }
 }
