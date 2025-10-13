@@ -13,6 +13,8 @@ class GenerateSitemap extends Command
 
     public function handle()
     {
+        $this->info('🧭 Generating sitemap...');
+
         $staticRoutes = [
             'home',
             'how-it-works',
@@ -34,6 +36,11 @@ class GenerateSitemap extends Command
             }
         }
 
+        if (empty($urls)) {
+            $this->warn('⚠️ No valid routes found — sitemap not generated.');
+            return;
+        }
+
         $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
 
@@ -52,5 +59,14 @@ class GenerateSitemap extends Command
         File::put(public_path('sitemap.xml'), $xml);
 
         $this->info('✅ Sitemap generated successfully: public/sitemap.xml');
+
+        // Optional SEO ping
+        try {
+            @file_get_contents('https://www.google.com/ping?sitemap=' . urlencode(url('sitemap.xml')));
+            @file_get_contents('https://www.bing.com/ping?sitemap=' . urlencode(url('sitemap.xml')));
+            $this->info('🌍 Google & Bing notified successfully.');
+        } catch (\Exception $e) {
+            $this->warn('⚠️ Could not ping search engines: ' . $e->getMessage());
+        }
     }
 }
