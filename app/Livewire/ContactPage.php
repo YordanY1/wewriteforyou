@@ -22,9 +22,8 @@ class ContactPage extends Component
 
         if (!empty($recipients)) {
             foreach ($recipients as $recipient) {
-                Mail::to($recipient)->send(
-                    new ContactMessageMail($this->name, $this->email, $this->message)
-                );
+                Mail::to($recipient)
+                    ->queue(new ContactMessageMail($this->name, $this->email, $this->message));
             }
         }
 

@@ -24,7 +24,8 @@ class ContactMessageMail extends Mailable
     public function build()
     {
         return $this->subject('New Contact Form Message')
-            ->from($this->email, $this->name)
+            ->from('support@bullwrite.com', 'BullWrite Contact Form')
+            ->replyTo($this->email, $this->name)
             ->view('emails.contact.contact-message');
     }
 }
