@@ -9,31 +9,27 @@
     </p>
 
     <!-- Info -->
-    <div class="grid md:grid-cols-3 gap-10 mb-16 text-center">
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-            <div class="text-3xl mb-3">📧</div>
-            <p class="font-bold">Email</p>
-            <a href="mailto:support@bullwrite.com" class="text-primary hover:underline"
-                aria-label="Email support@bullwrite.com">
-                support@bullwrite.com
-            </a>
-        </div>
+    <div class="flex justify-center">
+        <div class="grid md:grid-cols-2 gap-10 mb-16 text-center max-w-4xl w-full">
+            <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+                <div class="text-3xl mb-3">📧</div>
+                <p class="font-bold">Email</p>
+                <a href="mailto:support@bullwrite.com" class="text-primary hover:underline"
+                    aria-label="Email support@bullwrite.com">
+                    support@bullwrite.com
+                </a>
+            </div>
 
-        {{-- <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-            <div class="text-3xl mb-3">📱</div>
-            <p class="font-bold">Phone</p>
-            <p class="text-gray-600">+44 123 456 789</p>
-        </div> --}}
+            <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+                <div class="text-3xl mb-3">💬</div>
+                <p class="font-bold">Live Chat</p>
 
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-            <div class="text-3xl mb-3">💬</div>
-            <p class="font-bold">Live Chat</p>
-
-            @auth
-                <p class="text-gray-600">Available soon in your dashboard</p>
-            @else
-                <p class="text-gray-600">Exclusive to registered clients</p>
-            @endauth
+                @auth
+                    <p class="text-gray-600">Available soon in your dashboard</p>
+                @else
+                    <p class="text-gray-600">Exclusive to registered clients</p>
+                @endauth
+            </div>
         </div>
     </div>
 

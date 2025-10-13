@@ -55,7 +55,7 @@
             <h3 class="text-2xl font-bold mb-4 text-secondary">Express</h3>
             <p class="text-gray-600 mb-6">Faster turnaround – receive professional feedback within 2–3 days.</p>
             <p class="text-3xl font-extrabold mb-6">
-                From {{ $pricings->first()->currency->symbol }}{{ $expressPrice }}
+                From {{ $pricings->first()?->currency?->symbol ?? '' }}{{ $standardPrice ?? '' }}
             </p>
             <p class="text-sm text-gray-500">Balanced speed & value</p>
         </div>
