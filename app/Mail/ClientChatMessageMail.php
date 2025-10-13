@@ -3,14 +3,10 @@
 namespace App\Mail;
 
 use App\Models\ChatMessage;
-use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 
 class ClientChatMessageMail extends Mailable
 {
-    use Queueable, SerializesModels;
-
     public ChatMessage $chatMessage;
 
     public function __construct(ChatMessage $chatMessage)
@@ -21,6 +17,8 @@ class ClientChatMessageMail extends Mailable
     public function build()
     {
         return $this->subject('New message from BullWrite Support')
+            ->from('support@bullwrite.com', 'BullWrite Support')
+            ->replyTo('support@bullwrite.com', 'BullWrite Support')
             ->view('emails.chat.client-message')
             ->with([
                 'chatMessage' => $this->chatMessage,

@@ -3,14 +3,10 @@
 namespace App\Mail;
 
 use App\Models\ChatMessage;
-use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 
 class AdminChatMessageMail extends Mailable
 {
-    use Queueable, SerializesModels;
-
     public ChatMessage $chatMessage;
 
     public function __construct(ChatMessage $chatMessage)
@@ -21,6 +17,8 @@ class AdminChatMessageMail extends Mailable
     public function build()
     {
         return $this->subject('💬 New message from client')
+            ->from('support@bullwrite.com', 'BullWrite Chat System')
+            ->replyTo('support@bullwrite.com', 'BullWrite Support')
             ->view('emails.chat.admin-message')
             ->with([
                 'chatMessage' => $this->chatMessage,

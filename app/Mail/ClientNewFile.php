@@ -3,15 +3,11 @@
 namespace App\Mail;
 
 use App\Models\OrderFile;
-use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
 
 class ClientNewFile extends Mailable
 {
-    use Queueable, SerializesModels;
-
     public OrderFile $file;
     public bool $isGuest;
 
@@ -24,7 +20,13 @@ class ClientNewFile extends Mailable
     public function build()
     {
         $mail = $this->subject('📂 New File for Your Order')
-            ->view('emails.client.new-file');
+            ->from('support@bullwrite.com', 'BullWrite Orders')
+            ->replyTo('support@bullwrite.com', 'BullWrite Support')
+            ->view('emails.client.new-file')
+            ->with([
+                'file' => $this->file,
+                'isGuest' => $this->isGuest,
+            ]);
 
         if ($this->isGuest) {
             $mail->attach(Storage::disk('public')->path($this->file->path), [

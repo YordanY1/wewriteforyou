@@ -3,14 +3,10 @@
 namespace App\Mail;
 
 use App\Models\Order;
-use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 
 class OrderStatusUpdated extends Mailable
 {
-    use Queueable, SerializesModels;
-
     public Order $order;
 
     public function __construct(Order $order)
@@ -21,6 +17,11 @@ class OrderStatusUpdated extends Mailable
     public function build()
     {
         return $this->subject('📦 Your Order Status Has Been Updated')
-            ->view('emails.client.status-updated');
+            ->from('support@bullwrite.com', 'BullWrite Orders')
+            ->replyTo('support@bullwrite.com', 'BullWrite Support')
+            ->view('emails.client.status-updated')
+            ->with([
+                'order' => $this->order,
+            ]);
     }
 }
