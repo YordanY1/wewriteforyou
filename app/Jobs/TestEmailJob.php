@@ -13,6 +13,8 @@ class TestEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $connection = 'database';
+
     public function handle(): void
     {
         Mail::raw('🔥 Test mail from BullWrite queue', function ($m) {
