@@ -3,21 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as CheckoutSession;
+use App\Models\Order;
+use App\Mail\OrderPaidMail;
+use App\Mail\AdminOrderPaidMail;
 
 class PaymentController extends Controller
 {
     public function success(Request $request)
     {
         $sessionId = $request->get('session_id');
-
         Stripe::setApiKey(config('services.stripe.secret'));
 
         try {
             $session = CheckoutSession::retrieve($sessionId);
         } catch (\Exception $e) {
-            \Log::error("Stripe error: " . $e->getMessage());
+            Log::error("Stripe session retrieve failed: " . $e->getMessage());
             return view('payment.error', ['message' => 'Stripe session error']);
         }
 
@@ -25,18 +29,16 @@ class PaymentController extends Controller
         $order = null;
 
         if ($reference) {
-            $order = \App\Models\Order::where('reference_code', $reference)->first();
+            $order = Order::where('reference_code', $reference)->first();
 
             if ($order) {
                 $oldPaymentStatus = $order->payment_status ?? 'unpaid';
                 $oldOrderStatus   = $order->order_status ?? 'draft';
 
-    
                 $order->update([
                     'payment_status' => 'paid',
                     'order_status'   => 'draft',
                 ]);
-
 
                 $order->statusHistories()->create([
                     'old_payment_status' => $oldPaymentStatus,
@@ -47,17 +49,23 @@ class PaymentController extends Controller
                 ]);
 
                 try {
-                    \Mail::to($order->email)
-                        ->queue(new \App\Mail\OrderPaidMail($order));
+                    Mail::to($order->email)
+                        ->send(new OrderPaidMail($order));
+                    Log::info("Mail to customer sent successfully for order {$order->reference_code}");
                 } catch (\Exception $e) {
-                    \Log::error("Mail to customer failed: " . $e->getMessage());
+                    Log::error("Mail to customer failed for order {$order->reference_code}: " . $e->getMessage());
                 }
 
                 try {
-                    \Mail::to(config('mail.admin_recipients'))
-                        ->queue(new \App\Mail\AdminOrderPaidMail($order));
+                    $admins = config('mail.admin_recipients', []);
+                    if (!empty($admins)) {
+                        foreach ($admins as $adminEmail) {
+                            Mail::to($adminEmail)->send(new AdminOrderPaidMail($order));
+                        }
+                    }
+                    Log::info("Mail to admin(s) sent successfully for order {$order->reference_code}");
                 } catch (\Exception $e) {
-                    \Log::error("Mail to admin failed: " . $e->getMessage());
+                    Log::error("Mail to admin failed for order {$order->reference_code}: " . $e->getMessage());
                 }
             }
         }
@@ -70,7 +78,7 @@ class PaymentController extends Controller
         $order = null;
 
         if ($request->has('reference_code')) {
-            $order = \App\Models\Order::where('reference_code', $request->get('reference_code'))->first();
+            $order = Order::where('reference_code', $request->get('reference_code'))->first();
             if ($order) {
                 $order->delete();
             }
