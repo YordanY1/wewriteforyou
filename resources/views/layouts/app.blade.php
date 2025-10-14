@@ -113,7 +113,7 @@
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
-        function onRecaptchaSuccess(token) {
+        window.onRecaptchaSuccess = function(token) {
             const el = document.querySelector('#contact-form');
             if (!el) return;
 
@@ -126,11 +126,11 @@
             }
 
             grecaptcha.reset();
-        }
+        };
 
-        function onRecaptchaExpired() {
+        window.onRecaptchaExpired = function() {
             alert('reCAPTCHA expired. Please verify again.');
-        }
+        };
     </script>
 
 </body>
