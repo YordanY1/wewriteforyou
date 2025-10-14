@@ -1,4 +1,4 @@
-<div class="container mx-auto px-6 py-20">
+<div id="contact-form" class="container mx-auto px-6 py-20">
     <!-- Hero -->
     <h1 class="text-5xl font-extrabold text-primary text-center mb-6">
         Contact BullWrite
@@ -39,7 +39,7 @@
             <div class="mb-4 text-green-600 font-semibold">{{ session('success') }}</div>
         @endif
 
-        <form id="contact-form" wire:submit.prevent="send" class="space-y-6">
+        <form wire:submit.prevent="send" class="space-y-6">
             <input type="hidden" id="recaptcha_response" name="g-recaptcha-response">
             <div>
                 <label for="name" class="block text-left font-medium">Name</label>
@@ -68,7 +68,11 @@
                 @enderror
             </div>
 
-            <div id="recaptcha-container"></div>
+            <div class="text-center">
+                <div class="g-recaptcha inline-block" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"
+                    data-callback="onRecaptchaSuccess" data-error-callback="onRecaptchaError">
+                </div>
+            </div>
 
 
             <button type="submit"
