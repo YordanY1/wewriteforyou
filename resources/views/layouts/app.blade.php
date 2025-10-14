@@ -111,7 +111,8 @@
         });
     </script>
 
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+
     <script>
         window.onRecaptchaSuccess = function(token) {
             const el = document.querySelector('#contact-form');
@@ -131,7 +132,39 @@
         window.onRecaptchaExpired = function() {
             alert('reCAPTCHA expired. Please verify again.');
         };
+
+        document.addEventListener('livewire:load', function() {
+            const renderCaptcha = () => {
+                const container = document.getElementById('recaptcha-container');
+                if (typeof grecaptcha === 'undefined' || !container) {
+                    setTimeout(renderCaptcha, 500);
+                    return;
+                }
+                if (container.hasChildNodes()) return;
+
+                grecaptcha.render('recaptcha-container', {
+                    sitekey: '{{ env('RECAPTCHA_SITE_KEY') }}',
+                    callback: window.onRecaptchaSuccess,
+                    'expired-callback': window.onRecaptchaExpired
+                });
+            };
+
+            renderCaptcha();
+
+            Livewire.hook('morph.updated', () => {
+                const container = document.getElementById('recaptcha-container');
+                if (container && !container.hasChildNodes()) {
+                    grecaptcha.render('recaptcha-container', {
+                        sitekey: '{{ env('RECAPTCHA_SITE_KEY') }}',
+                        callback: window.onRecaptchaSuccess,
+                        'expired-callback': window.onRecaptchaExpired
+                    });
+                }
+            });
+        });
     </script>
+
+
 
 </body>
 
