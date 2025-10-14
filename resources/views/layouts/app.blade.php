@@ -110,6 +110,21 @@
             });
         });
     </script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        window.onRecaptchaSuccess = function(token) {
+            const el = document.querySelector('#contact-form');
+            if (!el) return;
+
+            const id = el.getAttribute('wire:id');
+            const component = Livewire.find(id);
+
+            if (component) {
+                component.set('recaptchaToken', token);
+            }
+        };
+    </script>
 </body>
 
 </html>

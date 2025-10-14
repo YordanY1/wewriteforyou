@@ -6,12 +6,16 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Mail\ContactMessageMail;
+use Illuminate\Support\Facades\Http;
+
 
 class ContactPage extends Component
 {
     public $name;
     public $email;
     public $message;
+
+    public $recaptchaToken;
 
     public function send()
     {
@@ -20,6 +24,21 @@ class ContactPage extends Component
             'email'   => 'required|email',
             'message' => 'required|string|min:10',
         ]);
+
+
+        $captchaToken = $this->recaptchaToken;
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => env('RECAPTCHA_SECRET_KEY'),
+            'response' => $captchaToken,
+            'remoteip' => request()->ip(),
+        ]);
+
+        if (!($response->json('success') ?? false)) {
+            session()->flash('error', 'Неуспешна проверка на reCAPTCHA. Опитай отново.');
+            return;
+        }
+
 
         $recipients = config('mail.admin_recipients', []);
 

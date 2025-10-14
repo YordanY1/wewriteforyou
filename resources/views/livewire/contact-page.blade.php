@@ -39,7 +39,8 @@
             <div class="mb-4 text-green-600 font-semibold">{{ session('success') }}</div>
         @endif
 
-        <form wire:submit.prevent="send" class="space-y-6">
+        <form id="contact-form" wire:submit.prevent="send" class="space-y-6">
+            <input type="hidden" id="recaptcha_response" name="g-recaptcha-response">
             <div>
                 <label for="name" class="block text-left font-medium">Name</label>
                 <input type="text" id="name" wire:model="name"
