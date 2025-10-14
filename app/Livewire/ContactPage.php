@@ -49,13 +49,10 @@ class ContactPage extends Component
                         new ContactMessageMail($this->name, $this->email, $this->message)
                     );
 
-                    Log::info("Contact message sent successfully to {$recipient} from {$this->email}");
                 } catch (\Exception $e) {
                     Log::error("Contact form mail failed to {$recipient}: " . $e->getMessage());
                 }
             }
-        } else {
-            Log::warning('Contact form attempted send but no admin_recipients configured.');
         }
 
         session()->flash('success', '✅ Your message has been sent successfully!');
