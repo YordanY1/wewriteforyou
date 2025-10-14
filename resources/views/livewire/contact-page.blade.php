@@ -68,6 +68,12 @@
                 @enderror
             </div>
 
+            <div class="flex justify-center">
+                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"
+                    data-callback="onRecaptchaSuccess" data-expired-callback="onRecaptchaExpired">
+                </div>
+            </div>
+
             <button type="submit"
                 class="bg-gold text-black px-6 py-3 rounded-lg font-bold shadow hover:bg-secondary hover:text-white transition cursor-pointer">
                 Send Message
