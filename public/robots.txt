@@ -1,12 +1,28 @@
+# =========================================
+# BullWrite.com – Robots.txt
+# =========================================
 User-agent: *
 Allow: /
 
+# Disallow admin or private routes
 Disallow: /dashboard
 Disallow: /orders
+Disallow: /payment
+
 Disallow: /login
 Disallow: /register
-Disallow: /reset-password
 Disallow: /forgot-password
-Disallow: /payment/
+Disallow: /reset-password
 
+# Sitemap
 Sitemap: https://bullwrite.com/sitemap.xml
+
+# Crawl delay (optional – good for server stability)
+Crawl-delay: 10
+
+# -----------------------------------------
+# Notes:
+# - All public pages are open for indexing.
+# - Admin/auth routes are blocked for privacy.
+# - Sitemap is auto-generated via artisan command.
+# -----------------------------------------
