@@ -71,7 +71,6 @@ document.addEventListener("alpine:init", () => {
 
             try {
                 const data = JSON.parse(saved);
-
                 this.step = data.step || 1;
                 this.step1Valid = data.step1Valid || false;
                 this.step3Valid = data.step3Valid || false;
@@ -93,6 +92,10 @@ document.addEventListener("alpine:init", () => {
                             });
                     }, 500);
                 }
+
+                setTimeout(() => {
+                    this.$wire.call("calculatePrice");
+                }, 800);
             } catch (err) {
                 console.error("Failed to restore form:", err);
             }
