@@ -171,6 +171,7 @@
                         <input type="text" wire:model.live="words" x-model="val"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                         <p class="text-sm text-gray-500">
+                            Enter the number of words (digits only).<br>
                             1 page ≈ 275 words. <span class="text-primary font-semibold">Minimum: 275 words</span>.
                         </p>
                         @error('words')

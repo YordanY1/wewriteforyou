@@ -61,7 +61,11 @@
     <!-- CTA -->
     <div class="text-center">
         <a href="{{ route('rights') }}"
-            class="bg-gold text-black px-8 py-4 rounded-lg font-bold text-lg shadow hover:bg-secondary hover:text-white transition cursor-pointer">
+            class="bg-gold text-black px-6 sm:px-8 py-3 sm:py-4
+              rounded-lg font-bold text-base sm:text-lg
+              shadow hover:bg-secondary hover:text-white
+              transition cursor-pointer
+              block max-w-[90%] mx-auto whitespace-normal text-center leading-snug">
             Read About Our Ethics & Your Rights
         </a>
     </div>
