@@ -1,10 +1,10 @@
 <div class="container mx-auto px-6 py-20">
     <h1 class="text-5xl font-extrabold text-primary mb-12 text-center">
-        Editing & Feedback Pricing for UK Students
+        Writing & Editing Prices for UK Students
     </h1>
 
     <p class="max-w-2xl mx-auto text-center text-gray-600 mb-16 leading-relaxed">
-        Clear, transparent, and student-friendly pricing for our editing and feedback plans.
+        Clear, transparent, and student-friendly pricing for our writing, editing, and feedback plans.
         All rates are in {{ optional($pricings->first()?->currency)->name ?? 'GBP' }} — no hidden fees, ever.
     </p>
 
@@ -53,7 +53,7 @@
         <!-- Standard -->
         <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition text-center">
             <h3 class="text-2xl font-bold mb-4 text-primary">Standard</h3>
-            <p class="text-gray-600 mb-6">Ideal for students planning ahead — feedback in 5–7 days.</p>
+            <p class="text-gray-600 mb-6">Ideal for students planning ahead — delivery in 5–7 days.</p>
             <p class="text-3xl font-extrabold mb-6">
                 From {{ optional($pricings->first()?->currency)->symbol ?? '' }}{{ $standardPrice ?? '' }}
             </p>
@@ -63,7 +63,7 @@
         <!-- Express -->
         <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition text-center border-2 border-gold">
             <h3 class="text-2xl font-bold mb-4 text-secondary">Express</h3>
-            <p class="text-gray-600 mb-6">Faster turnaround – receive professional feedback within 2–3 days.</p>
+            <p class="text-gray-600 mb-6">Fast turnaround – receive your paper within 2–3 days.</p>
             <p class="text-3xl font-extrabold mb-6">
                 From {{ optional($pricings->first()?->currency)->symbol ?? '' }}{{ $expressPrice ?? '' }}
             </p>
@@ -73,7 +73,7 @@
         <!-- Urgent -->
         <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition text-center">
             <h3 class="text-2xl font-bold mb-4 text-red-600">Urgent</h3>
-            <p class="text-gray-600 mb-6">Need it today? Get feedback in 24 hours.</p>
+            <p class="text-gray-600 mb-6">Need it today? Get your order completed in 24 hours.</p>
             <p class="text-3xl font-extrabold mb-6">
                 From {{ optional($pricings->first()?->currency)->symbol ?? '' }}{{ $urgentPrice ?? '' }}
             </p>
@@ -83,6 +83,10 @@
 
     <!-- Trust Note -->
     <div class="text-center mt-10 text-gray-500 text-sm">
-        All prices include taxes & fees. Payments are processed securely via Stripe & Apple Pay.
+        All prices include taxes & fees. Payments are processed securely via Stripe, Apple Pay and Google Pay.
+
+        <p class="mt-2 text-gray-500 text-sm">
+            Every document is 100% plagiarism-free and written without AI assistance.
+        </p>
     </div>
 </div>

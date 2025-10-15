@@ -4,34 +4,51 @@
         Contact BullWrite
     </h1>
     <p class="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
-        Have a question about our academic editing and feedback services?
+        Have a question about our services?
         We’re here to help — reach out anytime and our support team will respond promptly.
     </p>
 
     <!-- Info -->
     <div class="flex justify-center">
         <div class="grid md:grid-cols-2 gap-10 mb-16 text-center max-w-4xl w-full">
-            <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-                <div class="text-3xl mb-3">📧</div>
-                <p class="font-bold">Email</p>
-                <a href="mailto:support@bullwrite.com" class="text-primary hover:underline"
-                    aria-label="Email support@bullwrite.com">
+
+            <!-- Email Card -->
+            <div
+                class="bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition transform hover:-translate-y-1">
+                <div class="text-5xl mb-4 text-primary">📧</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
+                <p class="text-gray-600 mb-3">We reply within an hour.</p>
+                <a href="mailto:support@bullwrite.com"
+                    class="inline-block bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-secondary transition">
                     support@bullwrite.com
                 </a>
             </div>
 
-            <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-                <div class="text-3xl mb-3">💬</div>
-                <p class="font-bold">Live Chat</p>
+            <!-- Live Chat Card -->
+            <div class="bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition transform hover:-translate-y-1 cursor-pointer"
+                @auth
+onclick="window.location='{{ route('dashboard') }}'" @endauth>
+                <div class="text-5xl mb-4 text-secondary">💬</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Live Chat</h3>
+                <p class="text-gray-600 mb-3">Talk directly with our support team.</p>
 
                 @auth
-                    <p class="text-gray-600">Available soon in your dashboard</p>
+                    <span
+                        class="inline-block bg-green-100 text-green-800 px-6 py-2 rounded-lg font-semibold hover:bg-green-200 transition">
+                        Open in Dashboard →
+                    </span>
                 @else
-                    <p class="text-gray-600">Exclusive to registered clients</p>
+                    <button wire:click="$dispatch('openRegisterModal')"
+                        class="inline-block bg-gold text-black px-6 py-2 rounded-lg font-semibold hover:bg-secondary hover:text-white transition cursor-pointer">
+                        Join to Access
+                    </button>
                 @endauth
             </div>
+
+
         </div>
     </div>
+
 
     <!-- Contact Form -->
     <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow">

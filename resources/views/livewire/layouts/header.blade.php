@@ -2,9 +2,11 @@
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <!-- Logo -->
         <a wire:navigate href="{{ route('home') }}"
-            class="text-2xl font-extrabold tracking-tight text-primary hover:text-secondary transition">
-            Bull<span class="text-secondary">Write</span>
+            class="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-primary hover:text-secondary transition">
+            <img src="{{ asset('images/logo.jpg') }}" alt="BullWrite Logo" class="h-15 w-auto">
+            <span>Bull<span class="text-secondary">Write</span></span>
         </a>
+
 
         <!-- Desktop Nav -->
         <nav class="hidden md:flex space-x-8 text-gray-700 font-medium">
@@ -92,11 +94,7 @@
 
             @auth
                 <a wire:navigate href="{{ route('dashboard') }}" class="block hover:text-primary transition">Dashboard</a>
-                <form wire:submit.prevent="logout">
-                    <button type="submit" class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100 rounded">
-                        Logout
-                    </button>
-                </form>
+                @livewire('auth.logout')
             @endauth
 
             <button wire:click="$dispatch('openOrderForm')"

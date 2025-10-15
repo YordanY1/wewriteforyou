@@ -73,14 +73,17 @@ class OrderForm extends Component
     {
         $this->validate([
             'assignment_type_id' => 'required|exists:assignment_types,id',
-            'service_id'        => 'required|exists:services,id',
-            'academic_level_id' => 'required|exists:academic_levels,id',
-            'subject_id'        => 'required|exists:subjects,id',
-            'language_id'       => 'required|exists:languages,id',
-            'style_id'          => 'nullable|exists:styles,id',
-            'topic'             => 'nullable|string|max:255',
-            'words'             => 'required|integer|min:275',
-            'deadline_option'   => 'required',
+            'service_id'         => 'required|exists:services,id',
+            'academic_level_id'  => 'required|exists:academic_levels,id',
+            'subject_id'         => 'required|exists:subjects,id',
+            'language_id'        => 'required|exists:languages,id',
+            'style_id'           => 'required|exists:styles,id',
+            'topic'              => 'required|string|max:255',
+            'words'              => 'required|integer|min:275',
+            'deadline_option'    => 'required|string',
+            'instructions'       => 'required|string|min:10',
+            'files'              => 'required|array|min:1',
+            'files.*'            => 'file|max:153600',
         ] + (Auth::check() ? [] : ['email' => 'required|email']));
 
         $calculator = new PriceCalculator();

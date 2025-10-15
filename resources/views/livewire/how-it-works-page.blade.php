@@ -1,6 +1,6 @@
 <div class="container mx-auto px-6 py-20">
     <h1 class="text-5xl font-extrabold text-primary mb-16 text-center">
-        How BullWrite Helps You Improve Your Writing
+        How BullWrite Supports the Development of High-Quality Academic Work
     </h1>
 
     <div class="space-y-24">
@@ -12,14 +12,14 @@
                 📝
             </div>
             <div>
-                <h2 class="text-3xl font-bold mb-4">Step 1: Upload Your Draft or Topic</h2>
+                <h2 class="text-3xl font-bold mb-4">Step 1: Upload Your Assignment Brief</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    Share your document or topic details through our secure form.
-                    Include any instructions or notes you’d like our editors to focus on — structure, grammar, clarity,
-                    or argument flow.
+                    Share your assignment brief and topic details through our secure online form.
+                    Include any specific requirements or notes you’d like our team to focus on — structure, tone,
+                    referencing, or clarity.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    The more context you give, the more tailored and actionable your feedback will be.
+                    The more context you give, the more tailored and actionable our work will be.
                 </p>
             </div>
         </div>
@@ -33,11 +33,12 @@
             <div>
                 <h2 class="text-3xl font-bold mb-4">Step 2: Confirm Your Plan</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    Select your preferred turnaround time — from 5–7 days to express 24-hour review — and pay securely
+                    Select your preferred turnaround time — from 5–7 days to express 24-hour delivery — and pay securely
                     via Stripe or Apple Pay.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    Once confirmed, your document is assigned to a qualified UK academic editor for professional review.
+                    Once confirmed, your document is assigned to an academic editor for professional review and writing
+                    development.
                 </p>
             </div>
         </div>
@@ -49,13 +50,11 @@
                 👨‍💻
             </div>
             <div>
-                <h2 class="text-3xl font-bold mb-4">Step 3: Receive Expert Feedback</h2>
+                <h2 class="text-3xl font-bold mb-4">Step 3: Receive Progress Notifications</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    Our editor carefully reviews your work, adding detailed comments and suggestions to strengthen your
-                    writing, structure, and academic tone.
-                </p>
-                <p class="text-gray-600 mt-2">
-                    You’ll receive a marked-up version of your document, showing exactly what was improved and why.
+                    Our editor develops your document with precision, ensuring strong structure, clarity, and academic
+                    tone throughout.
+                    You’ll receive updates and can track progress as your work is refined and prepared for completion.
                 </p>
             </div>
         </div>
@@ -67,13 +66,13 @@
                 📦
             </div>
             <div>
-                <h2 class="text-3xl font-bold mb-4">Step 4: Review & Apply Changes</h2>
+                <h2 class="text-3xl font-bold mb-4">Step 4: Receive Your Completed Document</h2>
                 <p class="text-gray-700 leading-relaxed text-lg">
-                    Once feedback is ready, you’ll receive an email notification.
-                    Log in to download your edited document and apply the recommended improvements before submission.
+                    Once your work is fully developed, you’ll receive an email alert.
+                    Log in to download your polished document and review the enhancements that have been made.
                 </p>
                 <p class="text-gray-600 mt-2">
-                    BullWrite feedback helps you grow as a writer — every edit is an opportunity to learn.
+                    BullWrite ensures that every project is delivered with academic integrity and professional quality.
                 </p>
             </div>
         </div>
@@ -83,7 +82,7 @@
     <div class="text-center mt-24">
         <a href="{{ route('pricing') }}" wire:navigate
             class="bg-gold text-black px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:bg-secondary hover:text-white transition cursor-pointer">
-            View Plans & Start Improving
+            View Writing & Editing Plans
         </a>
         <p class="mt-4 text-gray-500">Transparent pricing – no hidden fees.</p>
     </div>

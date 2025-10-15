@@ -1,4 +1,5 @@
-<section class="py-20 bg-gray-50" x-data="{ step: 1 }">
+<section class="py-20 bg-gray-50" x-data="orderForm({{ Auth::check() ? 'true' : 'false' }})" x-init="loadSavedData()" x-effect="saveData()">
+
     <div class="container mx-auto px-6 max-w-3xl bg-white rounded-xl shadow-lg p-10">
         <h2 class="text-3xl font-extrabold text-primary mb-8 text-center">Place Your Order</h2>
 
@@ -21,11 +22,15 @@
             <!-- STEP 1: Basic Details -->
             <div x-show="step === 1" x-transition>
                 <div class="space-y-6">
+
                     <!-- Email -->
                     @if (!Auth::check())
-                        <div>
-                            <label class="block font-semibold mb-2">Your Email</label>
-                            <input type="text" wire:model.live="email"
+                        <div x-data="{ val: @entangle('email') }">
+                            <label class="block font-semibold mb-2">
+                                Your Email
+                                <span :class="!val ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                            </label>
+                            <input type="text" wire:model.live="email" x-model="val"
                                 class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             @error('email')
                                 <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -34,9 +39,12 @@
                     @endif
 
                     <!-- Assignment Type -->
-                    <div>
-                        <label class="block font-semibold mb-2">Assignment Type</label>
-                        <select wire:model.live="assignment_type_id"
+                    <div x-data="{ val: @entangle('assignment_type_id') }">
+                        <label class="block font-semibold mb-2">
+                            Assignment Type
+                            <span :class="!val ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                        </label>
+                        <select wire:model.live="assignment_type_id" x-model="val"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- Select Assignment Type --</option>
                             @foreach ($assignmentTypes->whereNull('parent_id') as $parent)
@@ -53,9 +61,12 @@
                     </div>
 
                     <!-- Service -->
-                    <div>
-                        <label class="block font-semibold mb-2">Service</label>
-                        <select wire:model.live="service_id"
+                    <div x-data="{ val: @entangle('service_id') }">
+                        <label class="block font-semibold mb-2">
+                            Service
+                            <span :class="!val ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                        </label>
+                        <select wire:model.live="service_id" x-model="val"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- Select Service --</option>
                             @foreach ($services as $service)
@@ -68,9 +79,12 @@
                     </div>
 
                     <!-- Academic Level -->
-                    <div>
-                        <label class="block font-semibold mb-2">Academic Level</label>
-                        <select wire:model.live="academic_level_id"
+                    <div x-data="{ val: @entangle('academic_level_id') }">
+                        <label class="block font-semibold mb-2">
+                            Academic Level
+                            <span :class="!val ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                        </label>
+                        <select wire:model.live="academic_level_id" x-model="val"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- Select Level --</option>
                             @foreach ($levels as $level)
@@ -83,9 +97,12 @@
                     </div>
 
                     <!-- Subject -->
-                    <div>
-                        <label class="block font-semibold mb-2">Subject</label>
-                        <select wire:model.live="subject_id"
+                    <div x-data="{ val: @entangle('subject_id') }">
+                        <label class="block font-semibold mb-2">
+                            Subject
+                            <span :class="!val ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                        </label>
+                        <select wire:model.live="subject_id" x-model="val"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- Select Subject --</option>
                             @foreach ($subjects as $subj)
@@ -98,9 +115,12 @@
                     </div>
 
                     <!-- Language -->
-                    <div>
-                        <label class="block font-semibold mb-2">Language</label>
-                        <select wire:model.live="language_id"
+                    <div x-data="{ val: @entangle('language_id') }">
+                        <label class="block font-semibold mb-2">
+                            Language
+                            <span :class="!val ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                        </label>
+                        <select wire:model.live="language_id" x-model="val"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             @foreach ($languages as $lang)
                                 <option value="{{ $lang->id }}">{{ $lang->name }}</option>
@@ -112,9 +132,12 @@
                     </div>
 
                     <!-- Style -->
-                    <div>
-                        <label class="block font-semibold mb-2">Citation Style</label>
-                        <select wire:model.live="style_id"
+                    <div x-data="{ val: @entangle('style_id') }">
+                        <label class="block font-semibold mb-2">
+                            Citation Style
+                            <span :class="!val ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                        </label>
+                        <select wire:model.live="style_id" x-model="val"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- None --</option>
                             @foreach ($styles as $style)
@@ -127,9 +150,12 @@
                     </div>
 
                     <!-- Topic -->
-                    <div>
-                        <label class="block font-semibold mb-2">Topic / Title</label>
-                        <input type="text" wire:model.live="topic"
+                    <div x-data="{ val: @entangle('topic') }">
+                        <label class="block font-semibold mb-2">
+                            Topic / Title
+                            <span :class="!val ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                        </label>
+                        <input type="text" wire:model.live="topic" x-model="val"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                         @error('topic')
                             <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -137,9 +163,12 @@
                     </div>
 
                     <!-- Word Count -->
-                    <div>
-                        <label class="block font-semibold mb-2">Word Count</label>
-                        <input type="text" wire:model.live="words"
+                    <div x-data="{ val: @entangle('words') }">
+                        <label class="block font-semibold mb-2">
+                            Word Count
+                            <span :class="!val ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                        </label>
+                        <input type="text" wire:model.live="words" x-model="val"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                         <p class="text-sm text-gray-500">
                             1 page ≈ 275 words. <span class="text-primary font-semibold">Minimum: 275 words</span>.
@@ -148,11 +177,16 @@
                             <p class="text-red-500 text-sm">{{ $message }}</p>
                         @enderror
                     </div>
+
                 </div>
 
                 <div class="text-right mt-8">
-                    <button type="button" @click="step = 2"
-                        class="bg-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white cursor-pointer">
+                    <button type="button" @click="if (step1Valid) step = 2" :disabled="!step1Valid"
+                        :class="step1Valid
+                            ?
+                            'bg-gold hover:bg-secondary hover:text-white' :
+                            'bg-gray-300 opacity-70 cursor-not-allowed'"
+                        class="px-6 py-3 rounded-lg font-bold text-black transition">
                         Next →
                     </button>
                 </div>
@@ -184,7 +218,8 @@
                         <div class="space-y-2">
                             @foreach ($addons as $addon)
                                 <label class="flex items-center space-x-2">
-                                    <input type="checkbox" wire:model.live="selectedAddons" value="{{ $addon->id }}"
+                                    <input type="checkbox" wire:model.live="selectedAddons"
+                                        value="{{ $addon->id }}"
                                         class="rounded border-gray-300 text-primary focus:ring-primary">
                                     <span>{{ $addon->name }} (+£{{ $addon->price }})</span>
                                 </label>
@@ -216,7 +251,7 @@
             <div x-show="step === 3" x-transition>
                 <div class="space-y-6">
                     <!-- Instructions -->
-                    <div wire:ignore x-data x-init="() => {
+                    <div wire:ignore x-data="{ hasText: false }" x-init="() => {
                         const quill = new Quill($refs.quillEditor, {
                             theme: 'snow',
                             placeholder: 'Type your instructions here...',
@@ -227,38 +262,50 @@
                                     ['link', 'blockquote', 'code-block', 'image'],
                                     [{ list: 'ordered' }, { list: 'bullet' }],
                                 ],
-                            }
+                            },
                         });
 
                         quill.on('text-change', function() {
-                            $refs.instructions.value = quill.root.innerHTML;
-                            Livewire.dispatch('input', {
-                                name: 'instructions',
-                                value: quill.root.innerHTML
-                            });
+                            const html = quill.root.innerHTML;
+                            $refs.instructions.value = html;
+                            $wire.set('instructions', html);
+                            const plain = quill.getText().trim();
+                            hasText = plain.length > 5;
                         });
                     }">
+                        <label class="block font-semibold mb-2">
+                            Instructions
+                            <span :class="!hasText ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                        </label>
+
                         <!-- Quill container -->
                         <div x-ref="quillEditor" class="h-40 border rounded-lg"></div>
 
                         <!-- hidden input -->
                         <input type="hidden" x-ref="instructions" wire:model="instructions">
+
+                        @error('instructions')
+                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                        @enderror
                     </div>
 
+
                     <!-- Files -->
-                    <div x-data="{ isDropping: false }" x-on:dragover.prevent="isDropping = true"
-                        x-on:dragleave.prevent="isDropping = false"
+                    <div x-data="{ isDropping: false, hasFiles: @entangle('files').length > 0 }" x-effect="hasFiles = @entangle('files').length > 0"
+                        x-on:dragover.prevent="isDropping = true" x-on:dragleave.prevent="isDropping = false"
                         x-on:drop.prevent="
-        isDropping = false;
-        $refs.fileInput.files = $event.dataTransfer.files;
-        $refs.fileInput.dispatchEvent(new Event('input', { bubbles: true }));
-    "
+            isDropping = false;
+            $refs.fileInput.files = $event.dataTransfer.files;
+            $refs.fileInput.dispatchEvent(new Event('input', { bubbles: true }));
+         "
                         class="w-full">
-                        <label class="block font-semibold mb-2">Upload Files</label>
+                        <label class="block font-semibold mb-2">
+                            Upload Files
+                            <span :class="!hasFiles ? 'required-glow' : 'text-gold'" class="ml-1">*</span>
+                        </label>
 
                         <!-- Dropzone -->
-                        <div class="flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg cursor-pointer transition
-               bg-gray-50 hover:bg-gray-100"
+                        <div class="flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg cursor-pointer transition bg-gray-50 hover:bg-gray-100"
                             :class="isDropping ? 'border-primary bg-primary/10' : 'border-gray-300'"
                             @click="$refs.fileInput.click()">
                             <svg class="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor"
@@ -275,7 +322,6 @@
                         <!-- Hidden input -->
                         <input type="file" wire:model="files" multiple x-ref="fileInput" class="hidden">
 
-                        <!-- Error -->
                         @error('files.*')
                             <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
                         @enderror
@@ -288,10 +334,10 @@
                                         <svg class="w-5 h-5 text-gray-500 mr-2" fill="currentColor"
                                             viewBox="0 0 20 20">
                                             <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002
-                                 2h12a2 2 0 002-2V7.414A2 2 0
-                                 0017.414 6L13 1.586A2 2 0
-                                 0011.586 1H4zm8 7a1 1 0
-                                 11-2 0 1 1 0 012 0z" />
+                    2h12a2 2 0 002-2V7.414A2 2 0
+                    0017.414 6L13 1.586A2 2 0
+                    0011.586 1H4zm8 7a1 1 0
+                    11-2 0 1 1 0 012 0z" />
                                         </svg>
                                         <span>{{ $file->getClientOriginalName() }}</span>
                                     </div>
@@ -299,11 +345,11 @@
                             @endif
                         </div>
 
-                        <!-- Loading indicator -->
                         <div wire:loading wire:target="files" class="text-sm text-gray-500 mt-2">
                             Uploading...
                         </div>
                     </div>
+
 
 
                     <!-- Summary -->
@@ -371,12 +417,33 @@
 
                     <button type="button" @click="step = 2"
                         class="bg-gray-200 px-6 py-3 rounded-lg font-bold hover:bg-gray-300">← Back</button>
-                    <button type="submit"
-                        class="bg-gold text-black px-8 py-4 rounded-lg font-bold shadow-lg hover:bg-secondary hover:text-white cursor-pointer">
-                        Submit Order
+                    <button type="submit" :disabled="!step3Valid" wire:loading.attr="disabled"
+                        class="px-8 py-3 rounded-lg font-bold shadow-lg transition flex items-center justify-center gap-2 relative overflow-hidden"
+                        :class="step3Valid
+                            ?
+                            'bg-gold text-black hover:bg-secondary hover:text-white cursor-pointer' :
+                            'bg-gray-300 opacity-70 cursor-not-allowed'">
+                        <span class="transition-opacity duration-200" wire:loading.class="opacity-0"
+                            wire:loading.remove.class="opacity-100">
+                            Submit Order
+                        </span>
+
+                        <span wire:loading
+                            class="absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-200 opacity-0"
+                            wire:loading.class="opacity-100">
+                            <svg class="animate-spin h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10"
+                                    stroke="currentColor" stroke-width="3"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z">
+                                </path>
+                            </svg>
+                            <span class="text-sm font-medium">Processing...</span>
+                        </span>
                     </button>
                 </div>
             </div>
+
         </form>
     </div>
 </section>

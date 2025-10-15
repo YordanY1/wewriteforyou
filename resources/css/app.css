@@ -18,3 +18,22 @@
     --color-dark: #111827;
     --color-light: #F9FAFB;
 }
+
+
+@keyframes gold-glow {
+
+    0%,
+    100% {
+        color: #b8860b;
+        text-shadow: 0 0 6px rgba(218, 165, 32, 0.6);
+    }
+
+    50% {
+        color: #ffd700;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 1);
+    }
+}
+
+.required-glow {
+    animation: gold-glow 1.5s infinite;
+}

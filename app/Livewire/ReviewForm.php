@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
 
 class ReviewForm extends Component
 {
@@ -14,26 +15,34 @@ class ReviewForm extends Component
 
     public function submit()
     {
-        if (!Auth::check() && empty($this->author_name)) {
-            $this->addError('author_name', 'Please enter your name.');
-            return;
-        }
+
+        $this->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'required|string|max:1000',
+            'author_name' => Auth::check() ? 'nullable' : 'required|string|max:100',
+        ]);
+
 
         Review::create([
             'user_id' => Auth::id(),
-            'author_name' => Auth::check() ? Auth::user()->name : $this->author_name,
+            'author_name' => Auth::user()?->name ?? $this->author_name,
             'rating' => $this->rating,
             'comment' => $this->comment,
-            'is_public' => true,
-            'approved_at' => now(),
+            'is_public' => false,
+            'approved_at' => null,
         ]);
 
         $this->reset(['rating', 'comment', 'author_name']);
-        session()->flash('message', 'Thanks for your review!');
+
+        session()->flash('message', '✅ Thank you for your feedback!');
     }
 
     public function render()
     {
+        if (Auth::check()) {
+            $this->author_name = Auth::user()->name;
+        }
+
         return view('livewire.review-form');
     }
 }

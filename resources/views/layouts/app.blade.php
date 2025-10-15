@@ -97,6 +97,7 @@
     @livewire('footer')
 
     <livewire:cookie-consent />
+    @livewire('register-prompt-modal')
 
 
     @livewireScripts
