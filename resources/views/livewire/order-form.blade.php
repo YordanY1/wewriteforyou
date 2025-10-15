@@ -1,4 +1,4 @@
-<section class="py-20 bg-gray-50" x-data="orderForm({{ Auth::check() ? 'true' : 'false' }})" x-init="loadSavedData()" x-effect="saveData()">
+<section class="py-20 bg-gray-50" x-data="orderForm({{ Auth::check() ? 'true' : 'false' }})">
 
     <div class="container mx-auto px-6 max-w-3xl bg-white rounded-xl shadow-lg p-10">
         <h2 class="text-3xl font-extrabold text-primary mb-8 text-center">Place Your Order</h2>
