@@ -23,7 +23,7 @@
         <!-- Social Links -->
         <div class="flex justify-center space-x-5 mt-4 text-xl">
             <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/company/bullwrite" target="_blank" rel="noopener noreferrer"
+            {{-- <a href="https://www.linkedin.com/company/bullwrite" target="_blank" rel="noopener noreferrer"
                 aria-label="LinkedIn" class="hover:text-gold transition-colors">
                 <i class="fa-brands fa-linkedin"></i>
             </a>
@@ -44,7 +44,7 @@
             <a href="https://www.instagram.com/bullwrite" target="_blank" rel="noopener noreferrer"
                 aria-label="Instagram" class="hover:text-gold transition-colors">
                 <i class="fa-brands fa-instagram"></i>
-            </a>
+            </a> --}}
 
             <!-- Email -->
             <a href="mailto:support@bullwrite.com" aria-label="Email" class="hover:text-gold transition-colors">

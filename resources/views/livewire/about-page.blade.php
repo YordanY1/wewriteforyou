@@ -81,7 +81,7 @@
         'logo' => asset('images/logo.png'),
         'description' =>
             'UK-based academic editing and feedback service helping students improve writing quality, structure, and originality.',
-        'sameAs' => ['https://www.linkedin.com/company/bullwrite'],
+        // 'sameAs' => ['https://www.linkedin.com/company/bullwrite'],
         'foundingDate' => '2023',
         'address' => [
             '@type' => 'PostalAddress',
