@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pricings', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['writing', 'editing'])->default('writing');
             $table->integer('words');
             $table->decimal('d7', 8, 2);
             $table->decimal('d3', 8, 2);

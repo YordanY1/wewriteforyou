@@ -17,11 +17,9 @@ use App\Models\{
 };
 use Illuminate\Support\Facades\Auth;
 
-
 class OrderForm extends Component
 {
     use WithFileUploads;
-
 
     public $email, $subject, $words, $deadline_option = '7d', $instructions, $files = [];
     public $selectedAddons = [];
@@ -30,7 +28,7 @@ class OrderForm extends Component
     public $assignment_type_id, $sub_assignment_type_id, $service_id, $academic_level_id, $subject_id, $language_id = 1, $style_id;
     public $topic;
 
-
+    public $pricing_type = 'writing';
 
     public function updatedWords()
     {
@@ -47,27 +45,43 @@ class OrderForm extends Component
         $this->calculatePrice();
     }
 
-
     public function updated($propertyName)
     {
         $this->calculatePrice();
     }
 
+    public function updatedServiceId($value)
+    {
+        $service = Service::find($value);
+
+        if ($service) {
+            if (in_array(strtolower($service->slug), ['editing', 'proofreading'])) {
+                $this->pricing_type = 'editing';
+            } else {
+                $this->pricing_type = 'writing';
+            }
+        }
+
+        $this->calculatePrice();
+    }
+
+
     public function calculatePrice()
     {
-        if (!$this->words) {
+        if (!$this->words || !$this->service_id) {
             $this->finalPrice = 0;
             return;
         }
 
         $calculator = new PriceCalculator();
+
         $this->finalPrice = $calculator->calculate(
             $this->words,
             $this->deadline_option,
-            $this->selectedAddons
+            $this->selectedAddons,
+            $this->pricing_type
         );
     }
-
 
     public function submitOrder()
     {
@@ -91,6 +105,7 @@ class OrderForm extends Component
             $this->words,
             $this->deadline_option,
             $this->selectedAddons,
+            $this->pricing_type,
             detailed: true
         );
 
@@ -113,7 +128,6 @@ class OrderForm extends Component
             'reference_code'    => strtoupper(uniqid('ORD-')),
         ]);
 
-        // Add-ons
         foreach ($priceData['addons'] as $addon) {
             $order->addons()->create([
                 'addon_id' => $addon['id'],
@@ -121,7 +135,6 @@ class OrderForm extends Component
             ]);
         }
 
-        // Files
         foreach ($this->files as $file) {
             $path = $file->store("orders/{$order->id}", 'public');
             $order->files()->create([

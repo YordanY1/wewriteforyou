@@ -12,7 +12,6 @@ class ServiceSeeder extends Seeder
         Service::insert([
             ['name' => 'Writing', 'slug' => 'writing'],
             ['name' => 'Editing', 'slug' => 'editing'],
-            ['name' => 'Proofreading', 'slug' => 'proofreading'],
         ]);
     }
 }

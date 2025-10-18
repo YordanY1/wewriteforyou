@@ -11,12 +11,12 @@
 
         <div class="flex gap-2">
             <button wire:click="accept"
-                class="bg-gold text-black font-semibold px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition">
+                class="bg-gold text-black font-semibold px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition cursor-pointer">
                 Accept
             </button>
 
             <button wire:click="reject"
-                class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">
+                class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition cursor-pointer">
                 Reject
             </button>
         </div>

@@ -9,7 +9,8 @@ class PricingSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('pricings')->insert([
+        // ✍️ Writing Prices
+        $writing = [
             ['words' => 500,   'd7' => 20,  'd3' => 25,   'd2' => 30,   'd1' => 35,   'h12' => 40],
             ['words' => 1000,  'd7' => 35,  'd3' => 40,   'd2' => 42.5, 'd1' => 45,   'h12' => 55],
             ['words' => 1500,  'd7' => 50,  'd3' => 55,   'd2' => 57.5, 'd1' => 60,   'h12' => 70],
@@ -23,6 +24,39 @@ class PricingSeeder extends Seeder
             ['words' => 7000,  'd7' => 135, 'd3' => 140,  'd2' => 145,  'd1' => 160,  'h12' => 175],
             ['words' => 8000,  'd7' => 150, 'd3' => 165,  'd2' => 175,  'd1' => 195,  'h12' => 215],
             ['words' => 10000, 'd7' => 165, 'd3' => 170,  'd2' => 180,  'd1' => 210,  'h12' => 235],
-        ]);
+        ];
+
+        // 📝 Editing Prices
+        $editing = [
+            ['words' => 500,   'd7' => 8,   'd3' => 10,  'd2' => 12,  'd1' => 14,  'h12' => 22],
+            ['words' => 1000,  'd7' => 14,  'd3' => 16,  'd2' => 18,  'd1' => 20,  'h12' => 30],
+            ['words' => 1500,  'd7' => 20,  'd3' => 22,  'd2' => 25,  'd1' => 28,  'h12' => 40],
+            ['words' => 2000,  'd7' => 26,  'd3' => 28,  'd2' => 30,  'd1' => 35,  'h12' => 50],
+            ['words' => 2500,  'd7' => 30,  'd3' => 33,  'd2' => 36,  'd1' => 40,  'h12' => 55],
+            ['words' => 3000,  'd7' => 35,  'd3' => 38,  'd2' => 42,  'd1' => 48,  'h12' => 60],
+            ['words' => 3500,  'd7' => 40,  'd3' => 44,  'd2' => 48,  'd1' => 52,  'h12' => 68],
+            ['words' => 4000,  'd7' => 44,  'd3' => 48,  'd2' => 52,  'd1' => 58,  'h12' => 75],
+            ['words' => 5000,  'd7' => 50,  'd3' => 55,  'd2' => 60,  'd1' => 65,  'h12' => 85],
+            ['words' => 6000,  'd7' => 60,  'd3' => 65,  'd2' => 70,  'd1' => 75,  'h12' => 100],
+            ['words' => 7000,  'd7' => 68,  'd3' => 72,  'd2' => 78,  'd1' => 85,  'h12' => 110],
+            ['words' => 8000,  'd7' => 76,  'd3' => 82,  'd2' => 90,  'd1' => 100, 'h12' => 125],
+            ['words' => 10000, 'd7' => 90,  'd3' => 100, 'd2' => 110, 'd1' => 120, 'h12' => 150],
+        ];
+
+        foreach ($writing as &$row) {
+            $row['type'] = 'writing';
+            $row['currency_id'] = 1;
+            $row['created_at'] = now();
+            $row['updated_at'] = now();
+        }
+
+        foreach ($editing as &$row) {
+            $row['type'] = 'editing';
+            $row['currency_id'] = 1;
+            $row['created_at'] = now();
+            $row['updated_at'] = now();
+        }
+
+        DB::table('pricings')->insert(array_merge($writing, $editing));
     }
 }

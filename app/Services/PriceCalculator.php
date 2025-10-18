@@ -7,20 +7,31 @@ use App\Models\Addon;
 
 class PriceCalculator
 {
+    /**
+     * Calculate total order price
+     *
+     * @param  int     $words         Number of words
+     * @param  string  $deadlineOption  One of ['7d','3d','2d','24h','12h']
+     * @param  array   $addonIds      Array of addon IDs
+     * @param  string  $type          Pricing type: 'writing' | 'editing'
+     * @param  bool    $detailed      Return breakdown or total only
+     * @return float|array
+     */
     public function calculate(
         int $words,
         string $deadlineOption,
         array $addonIds = [],
+        string $type = 'writing',
         bool $detailed = false
     ): float|array {
-        $pricing = Pricing::where('words', '>=', $words)
+        $pricing = Pricing::where('type', $type)
+            ->where('words', '>=', $words)
             ->orderBy('words', 'asc')
             ->first();
 
         if (! $pricing) {
-            throw new \Exception("Pricing not found for {$words} words (above max).");
+            throw new \Exception("Pricing not found for {$words} words ({$type}).");
         }
-
         $basePrice = match ($deadlineOption) {
             '7d'  => $pricing->d7,
             '3d'  => $pricing->d3,
