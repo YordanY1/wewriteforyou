@@ -187,7 +187,7 @@
                             ?
                             'bg-gold hover:bg-secondary hover:text-white' :
                             'bg-gray-300 opacity-70 cursor-not-allowed'"
-                        class="px-6 py-3 rounded-lg font-bold text-black transition">
+                        class="px-6 py-3 rounded-lg font-bold text-black transition cursor-pointer">
                         Next →
                     </button>
                 </div>
