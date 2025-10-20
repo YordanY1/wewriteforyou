@@ -12,6 +12,14 @@ document.addEventListener("alpine:init", () => {
             this.restoreFromStorage();
             this.validateAll(isAuth);
 
+            if (window.location.pathname.includes("/thankyou")) {
+                this.clearStorage();
+                console.log(
+                    "🧹 Cleared stored order form after successful order."
+                );
+            }
+
+            // Livewire hooks
             if (!this.hookRegistered) {
                 this.hookRegistered = true;
 
@@ -34,6 +42,7 @@ document.addEventListener("alpine:init", () => {
                 });
             }
 
+            // watchers
             this.$watch("step", () => this.saveToStorage());
             this.$watch("step1Valid", () => this.saveToStorage());
             this.$watch("step3Valid", () => this.saveToStorage());
@@ -143,5 +152,18 @@ document.addEventListener("alpine:init", () => {
 
             this.step3Valid = hasInstructions && hasFiles;
         },
+
+        clearStorage() {
+            localStorage.removeItem(this.storageKey);
+        },
     }));
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const path = window.location.pathname;
+
+    if (path.includes("/payment/success")) {
+        localStorage.removeItem("bullwrite_order_form");
+        console.log("🧹 Cleared stored order form after successful payment.");
+    }
 });
