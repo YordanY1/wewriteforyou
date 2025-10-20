@@ -50,6 +50,14 @@ class OrderForm extends Component
         $this->calculatePrice();
     }
 
+    public function mount()
+    {
+        if (Auth::check() && !$this->email) {
+            $this->email = Auth::user()->email;
+        }
+    }
+
+
     public function updatedServiceId($value)
     {
         $service = Service::find($value);
