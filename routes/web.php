@@ -19,6 +19,8 @@ use App\Livewire\Orders\ShowOrder;
 use App\Livewire\TermsPage;
 use App\Livewire\PrivacyPolicyPage;
 use App\Livewire\CookiePolicyPage;
+use App\Http\Controllers\Auth\GoogleAuthController;
+
 
 
 Route::get('/', Home::class)->name('home');
@@ -50,5 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders', MyOrders::class)->name('orders.my');
     Route::get('/orders/{order}', ShowOrder::class)->name('orders.show');
 });
+
+Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
 
 Route::get('/health', fn() => response()->json(['status' => 'ok']))->name('health');
