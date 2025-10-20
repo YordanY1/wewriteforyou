@@ -187,7 +187,7 @@
                             ?
                             'bg-gold hover:bg-secondary hover:text-white' :
                             'bg-gray-300 opacity-70 cursor-not-allowed'"
-                        class="px-6 py-3 rounded-lg font-bold text-black transition cursor-pointer">
+                        class="px-6 py-3 rounded-lg font-bold text-black transition">
                         Next →
                     </button>
                 </div>
@@ -242,7 +242,7 @@
                     <button type="button" @click="step = 1"
                         class="bg-gray-200 px-6 py-3 rounded-lg font-bold hover:bg-gray-300">← Back</button>
                     <button type="button" @click="step = 3"
-                        class="bg-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white cursor-pointer">
+                        class="bg-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white">
                         Next →
                     </button>
                 </div>
