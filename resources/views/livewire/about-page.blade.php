@@ -78,7 +78,7 @@
         '@type' => 'Organization',
         'name' => 'BullWrite Academic Editing',
         'url' => url('/'),
-        'logo' => asset('images/logo.png'),
+        'logo' => asset('images/logo.jpg'),
         'description' =>
             'UK-based academic editing and feedback service helping students improve writing quality, structure, and originality.',
         // 'sameAs' => ['https://www.linkedin.com/company/bullwrite'],

@@ -43,7 +43,7 @@
         content="{{ $description ?? 'Academic editing and writing guidance trusted by UK students.' }}">
     <meta property="og:type" content="{{ $ogType ?? 'website' }}">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ $image ?? asset('images/logo.png') }}">
+    <meta property="og:image" content="{{ $image ?? asset('images/logo.jpg') }}">
     <meta property="og:locale" content="en_GB">
     <meta property="og:site_name" content="BullWrite">
 
@@ -70,7 +70,7 @@
         '@type' => 'Organization',
         'name' => 'BullWrite',
         'url' => url('/'),
-        'logo' => asset('images/logo.png'),
+        'logo' => asset('images/logo.jpg'),
         'sameAs' => [
             'https://twitter.com/BullWriteUK',
             'https://www.facebook.com/BullWrite',

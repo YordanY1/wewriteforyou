@@ -132,7 +132,7 @@
             '@type' => 'Organization',
             'name' => 'BullWrite Ltd',
             'url' => url('/'),
-            'logo' => asset('images/logo.png'),
+            'logo' => asset('images/logo.jpg'),
         ],
         'returnPolicyCategory' => 'Refund',
         'returnFees' => 'FreeReturn',
