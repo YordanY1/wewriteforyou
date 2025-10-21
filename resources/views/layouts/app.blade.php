@@ -42,7 +42,7 @@
         content="{{ $description ?? 'Academic editing and writing guidance trusted by UK students.' }}">
     <meta property="og:type" content="{{ $ogType ?? 'website' }}">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ $image ?? asset('images/og/bullwrite.jpg') }}">
+    <meta property="og:image" content="{{ $image ?? asset('images/logo.png') }}">
     <meta property="og:locale" content="en_GB">
     <meta property="og:site_name" content="BullWrite">
 
