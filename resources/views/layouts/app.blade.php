@@ -29,7 +29,7 @@
     <meta name="theme-color" content="#b81414">
 
     {{-- Favicon & Icons (Universal: Desktop, iOS, Android) --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}?v={{ $faviconVersion }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v={{ $faviconVersion }}">
     <link rel="icon" type="image/png" sizes="16x16"
         href="{{ asset('images/favicon-96x96.png') }}?v={{ $faviconVersion }}">
     <link rel="icon" type="image/png" sizes="32x32"
@@ -39,17 +39,14 @@
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg') }}?v={{ $faviconVersion }}">
 
     {{-- Apple iOS Icons --}}
-    <link rel="apple-touch-icon" sizes="120x120"
-        href="{{ asset('images/apple-touch-icon.png') }}?v={{ $appleVersion }}">
-    <link rel="apple-touch-icon" sizes="152x152"
-        href="{{ asset('images/apple-touch-icon.png') }}?v={{ $appleVersion }}">
-    <link rel="apple-touch-icon" sizes="167x167"
-        href="{{ asset('images/apple-touch-icon.png') }}?v={{ $appleVersion }}">
-    <link rel="apple-touch-icon" sizes="180x180"
-        href="{{ asset('images/apple-touch-icon.png') }}?v={{ $appleVersion }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('apple-touch-icon.png') }}?v={{ $appleVersion }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('apple-touch-icon.png') }}?v={{ $appleVersion }}">
+    <link rel="apple-touch-icon" sizes="167x167" href="{{ asset('apple-touch-icon.png') }}?v={{ $appleVersion }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v={{ $appleVersion }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('apple-touch-icon.png') }}">
 
     {{-- Android / PWA --}}
-    <link rel="manifest" href="{{ asset('images/site.webmanifest') }}?v={{ $faviconVersion }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}?v={{ $faviconVersion }}">
     <meta name="msapplication-TileColor" content="#b81414">
     <meta name="msapplication-TileImage" content="{{ asset('images/web-app-manifest-192x192.png') }}">
     <meta name="theme-color" content="#b81414">
@@ -58,6 +55,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="BullWrite">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 
     {{-- Open Graph (Facebook, LinkedIn, etc.) --}}
     <meta property="og:title" content="{{ $title ?? 'BullWrite' }}">
