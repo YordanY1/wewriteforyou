@@ -27,6 +27,15 @@
     <meta name="language" content="en-GB">
     <meta name="theme-color" content="#b81414">
 
+    {{-- Favicon & Icons --}}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/logo.png') }}">
+    <link rel="mask-icon" href="{{ asset('images/logo.svg') }}" color="#b81414">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <meta name="msapplication-TileColor" content="#b81414">
+    <meta name="theme-color" content="#b81414">
+
     {{-- Open Graph --}}
     <meta property="og:title" content="{{ $title ?? 'BullWrite' }}">
     <meta property="og:description"
