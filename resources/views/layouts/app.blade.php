@@ -2,8 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 @php
-    $faviconVersion = filemtime(public_path('images/favicon.ico'));
-    $appleVersion = filemtime(public_path('images/apple-touch-icon.png'));
+    $faviconVersion = filemtime(public_path('favicon.ico'));
+    $appleVersion = filemtime(public_path('apple-touch-icon.png'));
     $logoVersion = filemtime(public_path('images/logo.jpg'));
 @endphp
 
@@ -29,33 +29,21 @@
     <meta name="theme-color" content="#b81414">
 
     {{-- Favicon & Icons (Universal: Desktop, iOS, Android) --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v={{ $faviconVersion }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('images/favicon-96x96.png') }}?v={{ $faviconVersion }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v={{ $faviconVersion }}">
+    <link rel="alternate icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v={{ $faviconVersion }}">
     <link rel="icon" type="image/png" sizes="32x32"
         href="{{ asset('images/favicon-96x96.png') }}?v={{ $faviconVersion }}">
-    <link rel="icon" type="image/png" sizes="96x96"
-        href="{{ asset('images/favicon-96x96.png') }}?v={{ $faviconVersion }}">
-    <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg') }}?v={{ $faviconVersion }}">
-
-    {{-- Apple iOS Icons --}}
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('apple-touch-icon.png') }}?v={{ $appleVersion }}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('apple-touch-icon.png') }}?v={{ $appleVersion }}">
-    <link rel="apple-touch-icon" sizes="167x167" href="{{ asset('apple-touch-icon.png') }}?v={{ $appleVersion }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v={{ $appleVersion }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('apple-touch-icon.png') }}">
-
-    {{-- Android / PWA --}}
     <link rel="manifest" href="{{ asset('site.webmanifest') }}?v={{ $faviconVersion }}">
+
     <meta name="msapplication-TileColor" content="#b81414">
     <meta name="msapplication-TileImage" content="{{ asset('images/web-app-manifest-192x192.png') }}">
-    <meta name="theme-color" content="#b81414">
     <meta name="application-name" content="BullWrite">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="BullWrite">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
 
     {{-- Open Graph (Facebook, LinkedIn, etc.) --}}
     <meta property="og:title" content="{{ $title ?? 'BullWrite' }}">
@@ -64,8 +52,13 @@
     <meta property="og:type" content="{{ $ogType ?? 'website' }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ $image ?? asset('images/logo.jpg') }}?v={{ $logoVersion }}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="BullWrite logo">
     <meta property="og:locale" content="en_GB">
     <meta property="og:site_name" content="BullWrite">
+    <meta property="fb:app_id" content="1234567890">
 
     {{-- Twitter --}}
     <meta name="twitter:card" content="summary_large_image">
@@ -105,6 +98,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
+
 
 
 <body class="bg-light text-gray-900 antialiased flex flex-col min-h-screen font-sans">
