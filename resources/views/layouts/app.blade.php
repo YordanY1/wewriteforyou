@@ -28,11 +28,11 @@
     <meta name="theme-color" content="#b81414">
 
     {{-- Favicon & Icons --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
-    <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('images/favicon-96x96.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">
-    <link rel="manifest" href="{{ asset('images/site.webmanifest') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico?v=2') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg?v=2') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('images/favicon-96x96.png?v=2') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png?v=2') }}">
+    <link rel="manifest" href="{{ asset('images/site.webmanifest?v=2') }}">
     <meta name="msapplication-TileColor" content="#b81414">
     <meta name="theme-color" content="#b81414">
 
