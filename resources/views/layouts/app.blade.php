@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@php
+    $faviconVersion = filemtime(public_path('images/favicon.ico'));
+    $appleVersion = filemtime(public_path('images/apple-touch-icon.png'));
+    $logoVersion = filemtime(public_path('images/logo.jpg'));
+@endphp
 
 <head>
+    <!-- SweetAlert & Quill -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Quill CSS -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <!-- Quill JS -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -27,23 +28,44 @@
     <meta name="language" content="en-GB">
     <meta name="theme-color" content="#b81414">
 
-    {{-- Favicon & Icons --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico?v=2') }}">
-    <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg?v=2') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('images/favicon-96x96.png?v=2') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png?v=2') }}">
-    <link rel="manifest" href="{{ asset('images/site.webmanifest?v=2') }}">
+    {{-- Favicon & Icons (Universal: Desktop, iOS, Android) --}}
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}?v={{ $faviconVersion }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ asset('images/favicon-96x96.png') }}?v={{ $faviconVersion }}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ asset('images/favicon-96x96.png') }}?v={{ $faviconVersion }}">
+    <link rel="icon" type="image/png" sizes="96x96"
+        href="{{ asset('images/favicon-96x96.png') }}?v={{ $faviconVersion }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg') }}?v={{ $faviconVersion }}">
+
+    {{-- Apple iOS Icons --}}
+    <link rel="apple-touch-icon" sizes="120x120"
+        href="{{ asset('images/apple-touch-icon.png') }}?v={{ $appleVersion }}">
+    <link rel="apple-touch-icon" sizes="152x152"
+        href="{{ asset('images/apple-touch-icon.png') }}?v={{ $appleVersion }}">
+    <link rel="apple-touch-icon" sizes="167x167"
+        href="{{ asset('images/apple-touch-icon.png') }}?v={{ $appleVersion }}">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ asset('images/apple-touch-icon.png') }}?v={{ $appleVersion }}">
+
+    {{-- Android / PWA --}}
+    <link rel="manifest" href="{{ asset('images/site.webmanifest') }}?v={{ $faviconVersion }}">
     <meta name="msapplication-TileColor" content="#b81414">
+    <meta name="msapplication-TileImage" content="{{ asset('images/web-app-manifest-192x192.png') }}">
     <meta name="theme-color" content="#b81414">
+    <meta name="application-name" content="BullWrite">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="BullWrite">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-
-    {{-- Open Graph --}}
+    {{-- Open Graph (Facebook, LinkedIn, etc.) --}}
     <meta property="og:title" content="{{ $title ?? 'BullWrite' }}">
     <meta property="og:description"
         content="{{ $description ?? 'Academic editing and writing guidance trusted by UK students.' }}">
     <meta property="og:type" content="{{ $ogType ?? 'website' }}">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ $image ?? asset('images/logo.jpg') }}">
+    <meta property="og:image" content="{{ $image ?? asset('images/logo.jpg') }}?v={{ $logoVersion }}">
     <meta property="og:locale" content="en_GB">
     <meta property="og:site_name" content="BullWrite">
 
@@ -52,44 +74,40 @@
     <meta name="twitter:title" content="{{ $title ?? 'BullWrite' }}">
     <meta name="twitter:description"
         content="{{ $description ?? 'Boost your writing confidence with professional editing and feedback.' }}">
-    <meta name="twitter:image" content="{{ $image ?? asset('images/og/bullwrite.jpg') }}">
+    <meta name="twitter:image" content="{{ $image ?? asset('images/logo.jpg') }}?v={{ $logoVersion }}">
     <meta name="twitter:site" content="{{ $twitter ?? '@BullWriteUK' }}">
 
     {{-- Canonical --}}
     <link rel="canonical" href="{{ url()->current() }}">
 
-    {{-- Favicon & Icons --}}
-    <link rel="icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}">
-    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
-
     {{-- JSON-LD Schema --}}
     <script type="application/ld+json">
-    {!! json_encode([
-        '@context' => 'https://schema.org',
-        '@type' => 'Organization',
-        'name' => 'BullWrite',
-        'url' => url('/'),
-        'logo' => asset('images/logo.jpg'),
-        'sameAs' => [
-            'https://twitter.com/BullWriteUK',
-            'https://www.facebook.com/BullWrite',
-            'https://www.instagram.com/BullWrite'
-        ],
-        'description' => 'Academic editing and writing guidance trusted by UK students.',
-        'contactPoint' => [
-            [
-                '@type' => 'ContactPoint',
-                'contactType' => 'Customer Support',
-                'email' => 'support@bullwrite.com'
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'name' => 'BullWrite',
+            'url' => url('/'),
+            'logo' => asset('images/logo.jpg') . '?v=' . $logoVersion,
+            'sameAs' => [
+                'https://twitter.com/BullWriteUK',
+                'https://www.facebook.com/BullWrite',
+                'https://www.instagram.com/BullWrite'
+            ],
+            'description' => 'Academic editing and writing guidance trusted by UK students.',
+            'contactPoint' => [
+                [
+                    '@type' => 'ContactPoint',
+                    'contactType' => 'Customer Support',
+                    'email' => 'support@bullwrite.com'
+                ]
             ]
-        ]
-    ], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) !!}
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
+
 
 <body class="bg-light text-gray-900 antialiased flex flex-col min-h-screen font-sans">
 
