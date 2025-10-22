@@ -33,9 +33,10 @@
     <link rel="alternate icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v={{ $faviconVersion }}">
     <link rel="icon" type="image/png" sizes="32x32"
         href="{{ asset('images/favicon-96x96.png') }}?v={{ $faviconVersion }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v={{ $appleVersion }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}?v={{ $faviconVersion }}">
+
 
     <meta name="msapplication-TileColor" content="#b81414">
     <meta name="msapplication-TileImage" content="{{ asset('images/web-app-manifest-192x192.png') }}">
