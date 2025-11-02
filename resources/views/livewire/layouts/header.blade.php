@@ -4,7 +4,8 @@
         <a wire:navigate href="{{ route('home') }}"
             class="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-primary hover:text-secondary transition">
             <img src="{{ asset('images/logo.jpg?v=2') }}" alt="BullWrite Logo" class="h-10 w-auto rounded-lg">
-            <span>Bull<span class="text-secondary">Write</span></span>
+            <span class="font-serif font-bold text-2xl tracking-tight">Bull<span
+                    class="text-secondary">Write</span></span>
         </a>
 
         <!-- Desktop Nav -->

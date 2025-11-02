@@ -96,15 +96,20 @@
         ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
 
 
 
-<body class="bg-light text-gray-900 antialiased flex flex-col min-h-screen font-sans">
-
-
+<body class="bg-light text-gray-900 antialiased flex flex-col min-h-screen">
     <livewire:layouts.header />
 
     @livewire('order-modal')
