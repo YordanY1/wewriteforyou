@@ -65,6 +65,11 @@
     }
 }
 
+.backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+
 /* Gold glow animation */
 @keyframes gold-glow {
 

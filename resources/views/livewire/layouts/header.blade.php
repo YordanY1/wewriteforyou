@@ -1,4 +1,5 @@
-<header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50" x-data="{ open: false }">
+<header class="bg-white/80 shadow-sm sticky top-0 z-50" x-data="{ open: false }">
+
     <div class="max-w-screen-xl mx-auto px-6 py-4 flex justify-between items-center">
         <!-- Logo -->
         <a wire:navigate href="{{ route('home') }}"
