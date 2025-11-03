@@ -24,6 +24,10 @@ class PriceCalculator
         string $type = 'writing',
         bool $detailed = false
     ): float|array {
+
+        // failsafe cast for any weird browser/Livewire edge case
+        $words = (int) $words;
+
         $pricing = Pricing::where('type', $type)
             ->where('words', '>=', $words)
             ->orderBy('words', 'asc')

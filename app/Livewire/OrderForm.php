@@ -21,19 +21,23 @@ class OrderForm extends Component
 {
     use WithFileUploads;
 
-    public $email, $subject, $words, $deadline_option = '7d', $instructions, $files = [];
-    public $selectedAddons = [];
+    public $email, $subject, $instructions, $files = [];
     public $finalPrice = 0;
+    public int $words = 0;
+    public array $selectedAddons = [];
+    public string $deadline_option = '7d';
 
     public $assignment_type_id, $sub_assignment_type_id, $service_id, $academic_level_id, $subject_id, $language_id = 1, $style_id;
     public $topic;
 
     public $pricing_type = 'writing';
 
-    public function updatedWords()
+    public function updatedWords($value)
     {
+        $this->words = (int) preg_replace('/\D/', '', $value);
         $this->calculatePrice();
     }
+
 
     public function updatedDeadlineOption()
     {
