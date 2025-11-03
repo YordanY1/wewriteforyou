@@ -366,8 +366,8 @@
                             <li><strong>Language:</strong> {{ optional($languages->find($language_id))->name }}</li>
                             <li><strong>Style:</strong> {{ optional($styles->find($style_id))->name ?? 'None' }}</li>
                             <li><strong>Topic:</strong> {{ $topic ?? '' }}</li>
-                            <li><strong>Word Count:</strong> {{ $words ?? 0 }} words
-                                (~{{ ceil(($words ?? 0) / 275) }} pages)</li>
+                            <li><strong>Word Count:</strong> {{ $wordsInt }} words
+                                (~{{ ceil($wordsInt / 275) }} pages)</li>
                             <li><strong>Deadline:</strong> {{ $deadline_option ?? '' }}</li>
                             <li><strong>Add-ons:</strong>
                                 @if (!empty($selectedAddons))
