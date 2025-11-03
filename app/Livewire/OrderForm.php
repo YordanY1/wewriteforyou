@@ -49,11 +49,6 @@ class OrderForm extends Component
         $this->calculatePrice();
     }
 
-    public function updated($propertyName)
-    {
-        $this->calculatePrice();
-    }
-
     public function mount()
     {
         if (Auth::check() && !$this->email) {
