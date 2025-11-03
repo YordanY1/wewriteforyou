@@ -23,7 +23,8 @@ class OrderForm extends Component
 
     public $email, $subject, $instructions, $files = [];
     public $finalPrice = 0;
-    public int $words = 0;
+    public $words = '';
+    public int $wordsInt = 0;
     public array $selectedAddons = [];
     public string $deadline_option = '7d';
 
@@ -34,9 +35,13 @@ class OrderForm extends Component
 
     public function updatedWords($value)
     {
-        $this->words = (int) preg_replace('/\D/', '', $value);
+        $this->words = $value;
+
+        $this->wordsInt = (int) preg_replace('/\D/', '', $value);
+
         $this->calculatePrice();
     }
+
 
 
     public function updatedDeadlineOption()
@@ -75,7 +80,7 @@ class OrderForm extends Component
 
     public function calculatePrice()
     {
-        if (!$this->words || !$this->service_id) {
+        if (!$this->wordsInt || !$this->service_id) {
             $this->finalPrice = 0;
             return;
         }
@@ -83,12 +88,13 @@ class OrderForm extends Component
         $calculator = new PriceCalculator();
 
         $this->finalPrice = $calculator->calculate(
-            $this->words,
+            $this->wordsInt,
             $this->deadline_option,
             $this->selectedAddons,
             $this->pricing_type
         );
     }
+
 
     public function submitOrder()
     {
@@ -100,7 +106,7 @@ class OrderForm extends Component
             'language_id'        => 'required|exists:languages,id',
             'style_id'           => 'required|exists:styles,id',
             'topic'              => 'required|string|max:255',
-            'words'              => 'required|integer|min:275',
+            'wordsInt'           => 'required|integer|min:275',
             'deadline_option'    => 'required|string',
             'instructions'       => 'required|string|min:10',
             'files'              => 'required|array|min:1',
@@ -109,7 +115,7 @@ class OrderForm extends Component
 
         $calculator = new PriceCalculator();
         $priceData = $calculator->calculate(
-            $this->words,
+            $this->wordsInt,
             $this->deadline_option,
             $this->selectedAddons,
             $this->pricing_type,
@@ -126,7 +132,7 @@ class OrderForm extends Component
             'topic'             => $this->topic,
             'language_id'       => $this->language_id,
             'style_id'          => $this->style_id,
-            'words'             => $this->words,
+            'words'             => $this->wordsInt,
             'deadline_option'   => $this->deadline_option,
             'instructions'      => $this->instructions,
             'base_price'        => $priceData['base'],

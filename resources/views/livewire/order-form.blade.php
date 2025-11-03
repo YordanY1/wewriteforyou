@@ -202,7 +202,6 @@
                         <select wire:model.live="deadline_option"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="7d">7 days</option>
-                            <option value="5d">5 days</option>
                             <option value="3d">3 days</option>
                             <option value="2d">2 days</option>
                             <option value="24h">24 hours</option>
