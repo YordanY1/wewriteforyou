@@ -27,6 +27,8 @@ class OrderForm extends Component
     public int $wordsInt = 0;
     public array $selectedAddons = [];
     public string $deadline_option = '7d';
+    public bool $accepted_terms = false;
+
 
     public $assignment_type_id, $sub_assignment_type_id, $service_id, $academic_level_id, $subject_id, $language_id = 1, $style_id;
     public $topic;
@@ -95,6 +97,14 @@ class OrderForm extends Component
         );
     }
 
+    public function removeFile($index)
+    {
+        if (isset($this->files[$index])) {
+            unset($this->files[$index]);
+            $this->files = array_values($this->files);
+        }
+    }
+
 
     public function submitOrder()
     {
@@ -111,6 +121,7 @@ class OrderForm extends Component
             'instructions'       => 'required|string|min:10',
             'files'              => 'required|array|min:1',
             'files.*'            => 'file|max:153600',
+            'accepted_terms' => 'accepted',
         ] + (Auth::check() ? [] : ['email' => 'required|email']));
 
         $calculator = new PriceCalculator();
@@ -138,6 +149,8 @@ class OrderForm extends Component
             'base_price'        => $priceData['base'],
             'final_price'       => $priceData['total'],
             'currency_id'       => 1,
+            'accepted_terms'     => $this->accepted_terms,
+            'accepted_terms_at'  => now(),
             'reference_code'    => strtoupper(uniqid('ORD-')),
         ]);
 
@@ -169,7 +182,7 @@ class OrderForm extends Component
             'assignmentTypes' => AssignmentType::all(),
             'services'        => Service::all(),
             'levels'          => AcademicLevel::all(),
-            'subjects'        => Subject::all(),
+            'subjects'        => Subject::whereNull('parent_id')->with('children')->get(),
             'languages'       => Language::all(),
             'styles'          => Style::all(),
         ]);

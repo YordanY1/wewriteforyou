@@ -17,8 +17,8 @@ class OrderStatusUpdated extends Mailable
     public function build()
     {
         return $this->subject('📦 Your Order Status Has Been Updated')
-            ->from('support@bullwrite.com', 'BullWrite Orders')
-            ->replyTo('support@bullwrite.com', 'BullWrite Support')
+            ->from('bullwritecontacts@gmail.com', 'BullWrite Orders')
+            ->replyTo('bullwritecontacts@gmail.com', 'BullWrite Support')
             ->view('emails.client.status-updated')
             ->with([
                 'order' => $this->order,

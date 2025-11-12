@@ -13,8 +13,8 @@
             <!-- Email Card -->
             <div class="bg-gray-800 p-6 rounded-xl shadow-lg flex items-center gap-4 hover:shadow-xl transition">
                 <span class="text-gold text-3xl">📧</span>
-                <a href="mailto:support@bullwrite.com" class="text-lg font-semibold hover:text-gold transition">
-                    support@bullwrite.com
+                <a href="mailto:bullwritecontacts@gmail.com" class="text-lg font-semibold hover:text-gold transition">
+                    bullwritecontacts@gmail.com
                 </a>
             </div>
         </div>

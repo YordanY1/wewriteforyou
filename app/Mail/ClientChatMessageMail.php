@@ -17,8 +17,8 @@ class ClientChatMessageMail extends Mailable
     public function build()
     {
         return $this->subject('New message from BullWrite Support')
-            ->from('support@bullwrite.com', 'BullWrite Support')
-            ->replyTo('support@bullwrite.com', 'BullWrite Support')
+            ->from('bullwritecontacts@gmail.com', 'BullWrite Support')
+            ->replyTo('bullwritecontacts@gmail.com', 'BullWrite Support')
             ->view('emails.chat.client-message')
             ->with([
                 'chatMessage' => $this->chatMessage,

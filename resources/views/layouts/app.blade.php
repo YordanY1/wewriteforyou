@@ -74,27 +74,27 @@
 
     {{-- JSON-LD Schema --}}
     <script type="application/ld+json">
-        {!! json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'Organization',
-            'name' => 'BullWrite',
-            'url' => url('/'),
-            'logo' => asset('images/logo.jpg') . '?v=' . $logoVersion,
-            'sameAs' => [
-                'https://twitter.com/BullWriteUK',
-                'https://www.facebook.com/BullWrite',
-                'https://www.instagram.com/BullWrite'
-            ],
-            'description' => 'Academic editing and writing guidance trusted by UK students.',
-            'contactPoint' => [
-                [
-                    '@type' => 'ContactPoint',
-                    'contactType' => 'Customer Support',
-                    'email' => 'support@bullwrite.com'
-                ]
-            ]
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
-    </script>
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'Organization',
+    'name' => 'BullWrite',
+    'url' => url('/'),
+    'logo' => asset('images/logo.jpg') . '?v=' . $logoVersion,
+    'sameAs' => [
+        'https://www.instagram.com/bull.write/',
+        'https://www.tiktok.com/@bullwrite',
+    ],
+    'description' => 'Academic editing and writing guidance trusted by UK students.',
+    'contactPoint' => [
+        [
+            '@type' => 'ContactPoint',
+            'contactType' => 'Customer Support',
+            'email' => 'support@bullwrite.com',
+        ],
+    ],
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+</script>
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,6 +152,59 @@
             }
         };
     </script>
+    <!-- Floating Live Chat Button -->
+    <div x-data="{ open: false }" class="fixed z-[9999] flex flex-col items-end space-y-2 bottom-6 right-6">
+        <!-- Chat Icon Button -->
+        <button @click="open = !open"
+            class="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-primary to-secondary
+               text-white rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105
+               transition-all duration-300 cursor-pointer"
+            title="Live Chat">
+            💬
+        </button>
+
+        <!-- Chat Card -->
+        <div x-show="open" x-transition @click.outside="open = false"
+            class="w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 p-5 animate-fadeIn">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Live Chat</h3>
+            <p class="text-gray-600 text-sm mb-4">
+                Talk directly with our support team.
+            </p>
+
+            @auth
+                <a href="{{ route('dashboard') }}"
+                    class="block text-center bg-green-100 text-green-800 px-4 py-2 rounded-lg font-semibold hover:bg-green-200 transition">
+                    Open in Dashboard →
+                </a>
+            @else
+                <button wire:click="$dispatch('openRegisterModal')"
+                    class="w-full bg-gold text-black px-4 py-2 rounded-lg font-semibold hover:bg-secondary hover:text-white transition cursor-pointer">
+                    Join to Access
+                </button>
+            @endauth
+        </div>
+    </div>
+
+
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.25s ease-out;
+        }
+    </style>
+
+
 
 </body>
 

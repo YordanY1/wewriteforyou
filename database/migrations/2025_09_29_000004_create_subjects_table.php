@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Business and management, Nursing, etc.
-            $table->string('slug')->unique();
+            $table->string('name');
+            $table->string('slug')->index();
+            $table->string('emoji', 191)->nullable()->collation('utf8mb4_unicode_ci');
+            $table->foreignId('parent_id')->nullable()->constrained('subjects')->onDelete('cascade');
             $table->timestamps();
         });
     }

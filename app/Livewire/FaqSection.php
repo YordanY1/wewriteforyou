@@ -25,8 +25,9 @@ class FaqSection extends Component
         ],
         [
             'question' => 'Who provides the feedback?',
-            'answer'   => 'All feedback is handled by qualified UK academic editors with experience in university-level writing and assessment standards.',
+            'answer'   => 'All feedback is provided by qualified academic editors experienced in UK university writing and assessment standards.',
         ],
+
         [
             'question' => 'Is my personal information protected?',
             'answer'   => 'Absolutely. We use secure encryption, follow GDPR compliance, and never share client data with third parties.',

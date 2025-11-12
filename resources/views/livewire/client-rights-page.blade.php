@@ -43,7 +43,7 @@
 
             <p class="mt-4">
                 All refund requests must be made in writing to
-                <a href="mailto:support@bullwrite.com" class="text-primary hover:underline">support@bullwrite.com</a>
+                <a href="mailto:bullwritecontacts@gmail.com" class="text-primary hover:underline">bullwritecontacts@gmail.com</a>
                 within <strong>7 days of delivery</strong>.
             </p>
         </div>
@@ -96,7 +96,7 @@
             <h2 class="text-2xl font-bold text-primary mb-3">7. Contact</h2>
             <p>
                 For refund or revision requests, email
-                <a href="mailto:support@bullwrite.com" class="text-primary hover:underline">support@bullwrite.com</a>
+                <a href="mailto:bullwritecontacts@gmail.com" class="text-primary hover:underline">bullwritecontacts@gmail.com</a>
                 and include:
             </p>
             <ul class="list-disc ml-6 space-y-2 mt-2">

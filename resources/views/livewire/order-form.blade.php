@@ -105,15 +105,19 @@
                         <select wire:model.live="subject_id" x-model="val"
                             class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary">
                             <option value="">-- Select Subject --</option>
-                            @foreach ($subjects as $subj)
-                                <option value="{{ $subj->id }}">{{ $subj->name }}</option>
+
+                            @foreach ($subjects as $category)
+                                <optgroup label="{{ $category->emoji }} {{ $category->name }}">
+                                    @foreach ($category->children as $sub)
+                                        <option value="{{ $sub->id }}">— {{ $sub->name }}</option>
+                                    @endforeach
+                                </optgroup>
                             @endforeach
                         </select>
                         @error('subject_id')
                             <p class="text-red-500 text-sm">{{ $message }}</p>
                         @enderror
                     </div>
-
                     <!-- Language -->
                     <div x-data="{ val: @entangle('language_id') }">
                         <label class="block font-semibold mb-2">
@@ -329,17 +333,28 @@
                         <!-- Preview -->
                         <div class="mt-4 space-y-2" wire:loading.remove wire:target="files">
                             @if ($files)
-                                @foreach ($files as $file)
-                                    <div class="flex items-center p-2 bg-gray-100 rounded-lg text-sm text-gray-700">
-                                        <svg class="w-5 h-5 text-gray-500 mr-2" fill="currentColor"
-                                            viewBox="0 0 20 20">
-                                            <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002
-                    2h12a2 2 0 002-2V7.414A2 2 0
-                    0017.414 6L13 1.586A2 2 0
-                    0011.586 1H4zm8 7a1 1 0
-                    11-2 0 1 1 0 012 0z" />
-                                        </svg>
-                                        <span>{{ $file->getClientOriginalName() }}</span>
+                                @foreach ($files as $index => $file)
+                                    <div
+                                        class="flex items-center justify-between p-2 bg-gray-100 rounded-lg text-sm text-gray-700 group">
+                                        <div class="flex items-center">
+                                            <svg class="w-5 h-5 text-gray-500 mr-2" fill="currentColor"
+                                                viewBox="0 0 20 20">
+                                                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002
+                        2h12a2 2 0 002-2V7.414A2 2 0
+                        0017.414 6L13 1.586A2 2 0
+                        0011.586 1H4zm8 7a1 1 0
+                        11-2 0 1 1 0 012 0z" />
+                                            </svg>
+                                            <span
+                                                class="truncate max-w-[200px]">{{ $file->getClientOriginalName() }}</span>
+                                        </div>
+
+                                        <!-- Remove button -->
+                                        <button type="button" wire:click="removeFile({{ $index }})"
+                                            class="ml-2 text-gray-400 hover:text-red-500 transition-opacity opacity-0 group-hover:opacity-100"
+                                            title="Remove file">
+                                            ✕
+                                        </button>
                                     </div>
                                 @endforeach
                             @endif
@@ -412,12 +427,35 @@
                     </div>
                 @endguest
 
+                <!-- Terms Acceptance -->
+                <div class="mt-6 border-t pt-4">
+                    <label class="flex items-start space-x-3">
+                        <input type="checkbox" wire:model="accepted_terms"
+                            class="mt-1 h-5 w-5 text-primary rounded border-gray-300 focus:ring-primary">
+                        <span class="text-sm text-gray-700 leading-snug">
+                            I confirm that I have read and agree to the
+                            <a href="{{ route('terms') }}" target="_blank"
+                                class="text-primary hover:underline">Terms & Conditions</a>,
+                            <a href="{{ route('privacy-policy') }}" target="_blank"
+                                class="text-primary hover:underline">Privacy Policy</a>,
+                            and
+                            <a href="{{ route('rights') }}" target="_blank"
+                                class="text-primary hover:underline">Client Rights & Refund Policy</a>.
+                        </span>
+                    </label>
+                    @error('accepted_terms')
+                        <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
 
                 <div class="flex justify-between mt-8">
 
                     <button type="button" @click="step = 2"
                         class="bg-gray-200 px-6 py-3 rounded-lg font-bold hover:bg-gray-300">← Back</button>
-                    <button type="submit" :disabled="!step3Valid" wire:loading.attr="disabled"
+                    <button type="submit" :disabled="!step3Valid || !@this.accepted_terms"
+                        wire:loading.attr="disabled"
                         class="px-8 py-3 rounded-lg font-bold shadow-lg transition flex items-center justify-center gap-2 relative overflow-hidden"
                         :class="step3Valid
                             ?

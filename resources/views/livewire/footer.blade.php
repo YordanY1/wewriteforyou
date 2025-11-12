@@ -4,8 +4,8 @@
         <div>
             <p class="text-lg font-semibold">&copy; {{ date('Y') }} BullWrite</p>
             <p class="mt-1 text-sm text-gray-400">
-                Trusted UK-based platform for <strong>academic editing</strong>, <strong>proofreading</strong>,
-                and <strong>writing feedback</strong>.
+                Trusted platform supporting UK students with <strong>academic editing</strong>,
+                <strong>proofreading</strong>, and <strong>writing feedback</strong>.
             </p>
         </div>
 
@@ -22,36 +22,18 @@
 
         <!-- Social Links -->
         <div class="flex justify-center space-x-5 mt-4 text-xl">
-            <!-- LinkedIn -->
-            {{-- <a href="https://www.linkedin.com/company/bullwrite" target="_blank" rel="noopener noreferrer"
-                aria-label="LinkedIn" class="hover:text-gold transition-colors">
-                <i class="fa-brands fa-linkedin"></i>
-            </a>
-
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/bullwrite" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                class="hover:text-gold transition-colors">
-                <i class="fa-brands fa-facebook"></i>
-            </a>
-
-            <!-- X (Twitter) -->
-            <a href="https://x.com/bullwrite" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X"
-                class="hover:text-gold transition-colors">
-                <i class="fa-brands fa-x-twitter"></i>
-            </a>
-
             <!-- Instagram -->
-            <a href="https://www.instagram.com/bullwrite" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.instagram.com/bull.write/" target="_blank" rel="noopener noreferrer"
                 aria-label="Instagram" class="hover:text-gold transition-colors">
                 <i class="fa-brands fa-instagram"></i>
-            </a> --}}
+            </a>
 
-            <!-- Email -->
-            <a href="mailto:support@bullwrite.com" aria-label="Email" class="hover:text-gold transition-colors">
-                <i class="fa-solid fa-envelope"></i>
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@bullwrite" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
+                class="hover:text-gold transition-colors">
+                <i class="fa-brands fa-tiktok"></i>
             </a>
         </div>
-
 
         <!-- Legal -->
         <p class="text-xs text-gray-500 mt-4">

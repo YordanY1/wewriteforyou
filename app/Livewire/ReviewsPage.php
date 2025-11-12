@@ -16,9 +16,9 @@ class ReviewsPage extends Component
 
         return view('livewire.reviews-page', [
             'reviews'     => $reviews,
-            'title'       => 'Client Reviews & Feedback | BullWrite UK',
-            'description' => 'Read authentic client feedback about BullWrite’s academic editing and feedback services. Trusted by UK students for clarity, structure, and originality advice.',
-            'keywords'    => 'BullWrite reviews, academic editing feedback UK, student testimonials, writing improvement services',
+            'title'       => 'Client Reviews & Feedback | BullWrite',
+            'description' => 'Read authentic client feedback about BullWrite’s academic editing and feedback services. Trusted by students across the UK for improving clarity, structure, and originality.',
+            'keywords'    => 'BullWrite reviews, academic editing feedback, UK student testimonials, writing improvement services',
         ])->layout('layouts.app');
     }
 }

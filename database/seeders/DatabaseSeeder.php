@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             StyleSeeder::class,
             AddonSeeder::class,
             PricingSeeder::class,
+            ReviewSeeder::class,
         ]);
     }
 }

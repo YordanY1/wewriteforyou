@@ -18,9 +18,9 @@
                 <div class="text-5xl mb-4 text-primary">📧</div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
                 <p class="text-gray-600 mb-3">We reply within an hour.</p>
-                <a href="mailto:support@bullwrite.com"
+                <a href="mailto:bullwritecontacts@gmail.com"
                     class="inline-block bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-secondary transition">
-                    support@bullwrite.com
+                    bullwritecontacts@gmail.com
                 </a>
             </div>
 

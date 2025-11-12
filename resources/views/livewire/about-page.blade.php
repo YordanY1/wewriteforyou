@@ -4,7 +4,7 @@
         About BullWrite
     </h1>
     <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-16 leading-relaxed">
-        BullWrite is a UK-based academic editing and feedback service dedicated to helping students
+        BullWrite is an academic editing and feedback service dedicated to helping students
         enhance the quality, clarity, and originality of their writing.
         Our mission is simple – to support learning, not replace it.
     </p>
@@ -80,15 +80,20 @@
         'url' => url('/'),
         'logo' => asset('images/logo.jpg'),
         'description' =>
-            'UK-based academic editing and feedback service helping students improve writing quality, structure, and originality.',
-        // 'sameAs' => ['https://www.linkedin.com/company/bullwrite'],
+            'Academic editing and feedback service helping students improve writing quality, structure, and originality.',
         'foundingDate' => '2023',
+        'sameAs' => ['https://www.instagram.com/bull.write/', 'https://www.tiktok.com/@bullwrite'],
         'address' => [
             '@type' => 'PostalAddress',
-            'addressCountry' => 'GB',
+            'addressCountry' => 'BG',
         ],
     ];
 @endphp
+
+<script type="application/ld+json">
+{!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+</script>
+
 
 <script type="application/ld+json">
 {!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) !!}

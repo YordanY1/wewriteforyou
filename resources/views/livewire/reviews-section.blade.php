@@ -46,13 +46,10 @@
         'name' => 'BullWrite Academic Editing & Feedback',
         'url' => url('/'),
         'aggregateRating' => $aggregateRating,
-        'sameAs' => [
-            'https://twitter.com/BullWriteUK',
-            'https://www.facebook.com/BullWrite',
-            'https://www.instagram.com/BullWrite',
-        ],
+        'sameAs' => ['https://www.instagram.com/bull.write/', 'https://www.tiktok.com/@bullwrite'],
     ];
 @endphp
+
 
 <script type="application/ld+json">
 {!! json_encode($reviewSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}

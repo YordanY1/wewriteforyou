@@ -17,8 +17,8 @@ class AdminChatMessageMail extends Mailable
     public function build()
     {
         return $this->subject('💬 New message from client')
-            ->from('support@bullwrite.com', 'BullWrite Chat System')
-            ->replyTo('support@bullwrite.com', 'BullWrite Support')
+            ->from('bullwritecontacts@gmail.com', 'BullWrite Chat System')
+            ->replyTo('bullwritecontacts@gmail.com', 'BullWrite Support')
             ->view('emails.chat.admin-message')
             ->with([
                 'chatMessage' => $this->chatMessage,

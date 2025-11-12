@@ -27,15 +27,15 @@ class PricingPage extends Component
             ->get();
 
         $this->standardPrice = $this->writingPricings->min('d7');
-        $this->expressPrice = $this->writingPricings->min('d3');
-        $this->urgentPrice  = $this->writingPricings->min('d1');
+        $this->expressPrice  = $this->writingPricings->min('d3');
+        $this->urgentPrice   = $this->writingPricings->min('d1');
     }
 
     public function render()
     {
         return view('livewire.pricing-page', [
-            'title' => 'Writing & Editing Prices – BullWrite UK',
-            'description' => 'Compare writing and editing rates for UK students. Transparent, affordable, and deadline-based pricing for all services.',
+            'title'       => 'Writing & Editing Prices | BullWrite for UK Students',
+            'description' => 'Compare transparent, affordable writing and editing rates designed for UK students. Pricing is clear, deadline-based, and tailored to academic needs.',
         ])->layout('layouts.app');
     }
 }

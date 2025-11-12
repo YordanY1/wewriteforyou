@@ -50,6 +50,9 @@ return new class extends Migration
 
             $table->string('reference_code')->unique();
 
+            $table->boolean('accepted_terms')->default(false);
+            $table->timestamp('accepted_terms_at')->nullable();
+
             $table->timestamps();
         });
     }

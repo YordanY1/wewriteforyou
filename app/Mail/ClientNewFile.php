@@ -20,8 +20,8 @@ class ClientNewFile extends Mailable
     public function build()
     {
         $mail = $this->subject('📂 New File for Your Order')
-            ->from('support@bullwrite.com', 'BullWrite Orders')
-            ->replyTo('support@bullwrite.com', 'BullWrite Support')
+            ->from('bullwritecontacts@gmail.com', 'BullWrite Orders')
+            ->replyTo('bullwritecontacts@gmail.com', 'BullWrite Support')
             ->view('emails.client.new-file')
             ->with([
                 'file' => $this->file,
