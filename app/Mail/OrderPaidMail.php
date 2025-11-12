@@ -17,8 +17,8 @@ class OrderPaidMail extends Mailable
     public function build()
     {
         return $this->subject('✅ Your Order ' . $this->order->reference_code . ' Confirmation')
-            ->from('bullwritecontacts@gmail.com', 'BullWrite Orders')
-            ->replyTo('bullwritecontacts@gmail.com', 'BullWrite Support')
+            ->from('support@bullwrite.com', 'BullWrite Orders')
+            ->replyTo('support@bullwrite.com', 'BullWrite Support')
             ->to($this->order->email)
             ->view('emails.orders.paid')
             ->with([
