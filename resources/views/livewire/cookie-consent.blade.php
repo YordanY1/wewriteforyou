@@ -10,12 +10,12 @@
         </p>
 
         <div class="flex gap-2">
-            <button wire:click="accept"
+            <button wire:click="accept" x-on:click="$dispatch('cookie-accepted')"
                 class="bg-gold text-black font-semibold px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition cursor-pointer">
                 Accept
             </button>
 
-            <button wire:click="reject"
+            <button wire:click="reject" x-on:click="$dispatch('cookie-rejected')"
                 class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition cursor-pointer">
                 Reject
             </button>

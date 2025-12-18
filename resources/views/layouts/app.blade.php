@@ -8,6 +8,40 @@
 @endphp
 
 <head>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        // Default GDPR-safe state
+        gtag('consent', 'default', {
+            ad_storage: 'denied',
+            analytics_storage: 'denied'
+        });
+    </script>
+
+    @if (app()->environment('production'))
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17814106672"></script>
+        <script>
+            gtag('js', new Date());
+            gtag('config', 'AW-17814106672');
+        </script>
+    @endif
+
+
+    @if (request()->cookie('cookie_consent'))
+        <script>
+            gtag('consent', 'update', {
+                ad_storage: 'granted',
+                analytics_storage: 'granted'
+            });
+        </script>
+    @endif
+
+
     <!-- SweetAlert & Quill -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
@@ -129,6 +163,27 @@
     @livewireScripts
 
     <script>
+        window.addEventListener('cookie-accepted', () => {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    ad_storage: 'granted',
+                    analytics_storage: 'granted'
+                });
+            }
+        });
+
+        window.addEventListener('cookie-rejected', () => {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    ad_storage: 'denied',
+                    analytics_storage: 'denied'
+                });
+            }
+        });
+    </script>
+
+
+    <script>
         document.addEventListener('livewire:init', () => {
             Livewire.on('redirect-to-stripe', (event) => {
                 if (event.url) {
@@ -203,9 +258,6 @@
             animation: fadeIn 0.25s ease-out;
         }
     </style>
-
-
-
 </body>
 
 </html>
