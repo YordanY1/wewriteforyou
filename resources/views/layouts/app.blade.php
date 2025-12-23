@@ -193,6 +193,21 @@
         });
     </script>
 
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('google-lead-conversion', (event) => {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', {
+                        send_to: 'AW-17814106672/eI6DCI2Or9MbELDktq5C',
+                        value: event.value ?? 1.0,
+                        currency: 'BGN',
+                    });
+                }
+            });
+        });
+    </script>
+
+
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         window.onRecaptchaSuccess = function(token) {

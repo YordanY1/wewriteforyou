@@ -172,6 +172,11 @@ class OrderForm extends Component
         }
 
         $session = \App\Http\Controllers\PaymentController::createCheckoutSession($order);
+
+        $this->dispatch('google-lead-conversion', [
+            'value' => $priceData['total']
+        ]);
+
         $this->dispatch('redirect-to-stripe', url: $session->url);
     }
 
