@@ -14,9 +14,6 @@ document.addEventListener("alpine:init", () => {
 
             if (window.location.pathname.includes("/thankyou")) {
                 this.clearStorage();
-                console.log(
-                    "🧹 Cleared stored order form after successful order."
-                );
             }
 
             // Livewire hooks
@@ -164,6 +161,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (path.includes("/payment/success")) {
         localStorage.removeItem("bullwrite_order_form");
-        console.log("🧹 Cleared stored order form after successful payment.");
     }
 });
