@@ -24,10 +24,10 @@
     </script>
 
     @if (app()->environment('production'))
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17814106672"></script>
+       <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17883089577"></script>
         <script>
             gtag('js', new Date());
-            gtag('config', 'AW-17814106672');
+            gtag('config', 'AW-17883089577');
         </script>
     @endif
 
