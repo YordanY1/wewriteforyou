@@ -8,7 +8,7 @@
                 <script>
                     if (typeof gtag === 'function') {
                         gtag('event', 'conversion', {
-                            send_to: 'AW-17814106672/64NVCO2vhNYbELDktq5C',
+                            send_to: 'AW-17883089577/ar2PCIOwm-kbEKmVqc9C',
                             value: {{ number_format($order->final_price, 2, '.', '') }},
                             currency: 'GBP',
                             transaction_id: '{{ $order->reference_code }}'
