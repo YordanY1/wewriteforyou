@@ -24,7 +24,7 @@
     </script>
 
     @if (app()->environment('production'))
-       <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17883089577"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17883089577"></script>
         <script>
             gtag('js', new Date());
             gtag('config', 'AW-17883089577');
@@ -185,22 +185,12 @@
 
     <script>
         document.addEventListener('livewire:init', () => {
-            Livewire.on('redirect-to-stripe', (event) => {
-                if (event.url) {
-                    window.location.href = event.url;
-                }
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener('livewire:init', () => {
-            Livewire.on('google-lead-conversion', (event) => {
+            Livewire.on('begin-checkout', (event) => {
                 if (typeof gtag === 'function') {
                     gtag('event', 'conversion', {
-                        send_to: 'AW-17814106672/eI6DCI2Or9MbELDktq5C',
+                        send_to: 'AW-17883089577/DHjlCM-0--gbEKmVqc9C',
                         value: event.value ?? 1.0,
-                        currency: 'BGN',
+                        currency: 'EUR',
                     });
                 }
             });
