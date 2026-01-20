@@ -177,8 +177,7 @@ class OrderForm extends Component
             'value' => $priceData['total'],
         ]);
 
-        $this->dispatch('redirect-to-stripe', url: $session->url);
-
+        return redirect()->away($session->url);
     }
 
     public function render()

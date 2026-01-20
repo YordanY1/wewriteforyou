@@ -197,13 +197,13 @@
         });
     </script>
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', () => {
             Livewire.on('redirect-to-stripe', (event) => {
                 window.location.href = event.url;
             });
         });
-    </script>
+    </script> --}}
 
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
