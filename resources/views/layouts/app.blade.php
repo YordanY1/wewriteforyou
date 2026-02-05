@@ -9,7 +9,7 @@
 
 <head>
 
-    <script>
+    {{-- <script>
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
@@ -21,7 +21,7 @@
             ad_storage: 'denied',
             analytics_storage: 'denied'
         });
-    </script>
+    </script> --}}
 
     {{-- @if (app()->environment('production'))
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17883089577"></script>
@@ -32,14 +32,14 @@
     @endif --}}
 
 
-    @if (request()->cookie('cookie_consent'))
+    {{-- @if (request()->cookie('cookie_consent'))
         <script>
             gtag('consent', 'update', {
                 ad_storage: 'granted',
                 analytics_storage: 'granted'
             });
         </script>
-    @endif
+    @endif --}}
 
     <!-- Google Tag Manager -->
     <script>
@@ -189,7 +189,7 @@
 
     @livewireScripts
 
-    <script>
+    {{-- <script>
         window.addEventListener('cookie-accepted', () => {
             if (typeof gtag === 'function') {
                 gtag('consent', 'update', {
@@ -207,7 +207,7 @@
                 });
             }
         });
-    </script>
+    </script> --}}
 
 
     {{-- <script>

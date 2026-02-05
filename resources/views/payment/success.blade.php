@@ -2,20 +2,18 @@
     <div class="bg-white p-8 rounded-xl shadow-lg text-center">
 
         @if ($order)
-
-            {{-- Google Ads PURCHASE conversion --}}
             @if (app()->environment('production'))
                 <script>
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'conversion', {
-                            send_to: 'AW-17883089577/ar2PCIOwm-kbEKmVqc9C',
-                            value: {{ number_format($order->final_price, 2, '.', '') }},
-                            currency: 'GBP',
-                            transaction_id: '{{ $order->reference_code }}'
-                        });
-                    }
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        event: 'purchase',
+                        transaction_id: '{{ $order->reference_code }}',
+                        value: {{ number_format($order->final_price, 2, '.', '') }},
+                        currency: 'GBP'
+                    });
                 </script>
             @endif
+
 
             {{-- Success Icon --}}
             <div class="flex justify-center mb-4">
@@ -64,7 +62,6 @@
             <p class="text-gray-600">
                 We couldn’t find your order details.
             </p>
-
         @endif
 
         {{-- Back to home --}}
